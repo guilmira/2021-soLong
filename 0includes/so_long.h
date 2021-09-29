@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/09/28 13:24:52 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/09/29 15:04:38 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,9 @@
 # define SO_LONG_H
 
 # include <stdio.h>
-# include “mlx.h”
+# include "mlx.h"
 # include "libft.h"
-
-/* # define EIGHTH_BIT 128
-
-typedef struct s_recieved
-{
-	char	letter;
-	int		bit_counter;
-	int		bit_modifier;
-}	 */
+# define HEIGHT 1920
+# define WIDTH 1080
 
 #endif
