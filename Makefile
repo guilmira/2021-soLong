@@ -6,7 +6,7 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/28 12:11:49 by guilmira          #+#    #+#              #
-#    Updated: 2021/09/29 13:02:48 by guilmira         ###   ########.fr        #
+#    Updated: 2021/09/30 10:20:45 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,10 @@ LIB			= $(LIB_DIR)/libft.a
 INCLUDES	= -I ./0includes -I ./libft_submodule/0includes
 INCLUDES_LIBX	= -lmlx -framework OpenGL -framework AppKit
 #--------------------------------------------------------------------------------------------------------------SOURCES
-SRCS		= so_long.c
+SRCS		= 0so_long.c ft_draw.c ft_image.c
+SRCS_AUX	= aux_keycode.c
 OBJS		= $(SRCS:.c=.o)
+OBJS_AUX	= $(SRCS_AUX:.c=.o)
 #--------------------------------------------------------------------------------------------------------------RULES
 all: $(LIB) $(NAME)
 
@@ -40,6 +42,10 @@ $(NAME): $(OBJS)
 
 exe: $(NAME)
 	./$(NAME)
+
+key: $(OBJS_AUX)
+	$(CC) $(CFLAGS) $(OBJS_AUX) $(INCLUDES) $(LIB) $(INCLUDES_LIBX) -o aux_keycode
+	./aux_keycode
 
 #$(NAME): $(OBJS)
 #$(CC) $(CFLAGS) $(OBJS) $(INCLUDES) $(LIB) -o $(NAME)
