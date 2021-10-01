@@ -6,91 +6,46 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:20:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/09/30 13:27:02 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/01 14:41:47 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/** PURPOSE : closes program with output signal. */
-int	ft_exit(int	output)
+void	put_background(t_program *game, t_vector dimensions,char *path_backround)
 {
-	exit(output);
+	t_data		*floor;
+	t_vector	coords;
+	int			y;
+	int			x;
+
+	coords.x = 0;
+	coords.y = 0;
+	floor = ft_newsprite(game, path_backround);
+	y = -1;
+	x = -1;
+	while (++y <= dimensions.y)
+	{
+
+		while (++x < dimensions.x)
+		{
+			coords.x = x * UNIT_WIDTH;
+			push_image_towindow(game, floor, coords);
+		}
+		x = -1;
+		coords.x = 0;
+		coords.y = y * UNIT_HEIGHT;
+	}
 }
 
-int	ft_esc_exit(int	keycode, int i)
+t_vector	get_dimensions(t_vector dimensions)
 {
-	if (keycode == 53)
-		exit(i);
-	return (i);
-}
-
-int	ft_resize(int i)
-{
-	printf("resizing...\n");
-	return (i);
-}
-
-/** PURPOSE : init 42minilibx and open window.
- * 1. mlx_returns a pointer (void *). A lot of the library functions
- * need it in order to work.
- * 2. Open window, save pointer for later use.
- * 3. Establishes closing window hook */
-static void	initalize(t_program *game)
-{
-	game->mlx_pointer = mlx_init();
-	game->window = mlx_new_window(game->mlx_pointer, HEIGHT, WIDTH, "ventana");
-	if (!game->window || !game->mlx_pointer)
-		ft_shutdown();
-	mlx_key_hook(game->window, ft_esc_exit, 0);
-	mlx_hook(game->window, 17, 0, ft_exit, 0);
-	mlx_hook(game->window, 25, 0, ft_resize, 0);
-
-	//mlx_key_hook(game->window, ft_esc_exit, 0);
-}
-
-int	ft_frame_right(t_program *game)
-{
-	static int i;
-
-	i++;
-	ft_draw(game, i, 500, 0x0000FF00);
-	return (i);
-}
-
-int	ft_frame_up(t_program *game)
-{
-	static int j;
-
-	j++;
-	int t = 500;
-	ft_draw_up(game, 500, t - j, 0x0000FF00);
-	return (0);
-}
-
-int	move(int key, t_program	*game)
-{
-	static int	i;
-
-	if (key == 124)
-		i = mlx_loop_hook(game->mlx_pointer, ft_frame_right, game);
-	else if (key == 126)
-		mlx_loop_hook(game->mlx_pointer, ft_frame_up, game);
-	return(0);
-}
-
-t_data	*ft_newsprite(t_program *game, char *path)
-{
-	t_data	*new_image;
-	int		img_width = 50;
-	int		img_height = 50;
-
-	new_image = ft_calloc(1, sizeof(*new_image));
-	if (!new_image)
-		ft_shutdown();
-	new_image->img = mlx_xpm_file_to_image(game->mlx_pointer, path, &img_width, &img_height);
-	push_image_towindow(game, new_image);
-	return (new_image);
+	t_vector	window_dimensions;
+	//De los argumentos sacas DIMENSIONS.
+	//char	map[unit_hight][unit_width];
+	window_dimensions.x = dimensions.x * UNIT_WIDTH;
+	window_dimensions.y = dimensions.y * UNIT_HEIGHT;
+	return (window_dimensions);
 }
 
 /** PURPOSE : init 42minilibx, open window, and load an image.
@@ -100,21 +55,33 @@ t_data	*ft_newsprite(t_program *game, char *path)
 int main(void)
 {
 	t_program	*game;
+
 	t_data	*sprite_witch;
-	char	*path = "./witch.xpm";
+	t_data	*sprite_script;
+	char	*path = "./0images/witch.xpm";
+	char	*path2 = "./0images/red_potion.xpm";
+	char	*path_backround = "./0images/forest_floor.xpm";
+	t_vector	coords;
+	t_vector	dimensions;
+	t_vector	window_dimensions;
+	dimensions.x = 30;
+	dimensions.y = 20;
+	coords.x = 0;
+	coords.y = 0;
+
+
 
 
 	game = ft_calloc(1,sizeof(*game));
 	if (!game)
 		ft_shutdown();
-	initalize(game);
+	window_dimensions = get_dimensions(dimensions);
+	initalize(game, window_dimensions);
+	put_background(game, dimensions, path_backround);
+
+
 	sprite_witch = ft_newsprite(game, path);
-	//eliminar fondo de imagen. emepzar x esta pero dejar el resto para el final
-	//para cuando montes el programa bien.
-
-	mlx_key_hook(game->window, move, game);
-
-
+	sprite_script = ft_newsprite(game, path2);
 	mlx_loop(game->mlx_pointer);
 	return (0);
 }

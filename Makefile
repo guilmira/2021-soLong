@@ -6,7 +6,7 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/28 12:11:49 by guilmira          #+#    #+#              #
-#    Updated: 2021/09/30 10:20:45 by guilmira         ###   ########.fr        #
+#    Updated: 2021/10/01 10:45:22 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,8 +20,9 @@ LIB			= $(LIB_DIR)/libft.a
 INCLUDES	= -I ./0includes -I ./libft_submodule/0includes
 INCLUDES_LIBX	= -lmlx -framework OpenGL -framework AppKit
 #--------------------------------------------------------------------------------------------------------------SOURCES
-SRCS		= 0so_long.c ft_draw.c ft_image.c
-SRCS_AUX	= aux_keycode.c
+SRCS		= 0so_long.c 1hooks_window.c 2image_functions.c 3get_sprites.c
+#SRCS		= 0so_long_snake.c ft_draw.c
+SRCS_AUX	= ./0test/aux_keycode.c
 OBJS		= $(SRCS:.c=.o)
 OBJS_AUX	= $(SRCS_AUX:.c=.o)
 #--------------------------------------------------------------------------------------------------------------RULES

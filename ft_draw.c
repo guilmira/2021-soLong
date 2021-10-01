@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 09:15:29 by guilmira          #+#    #+#             */
-/*   Updated: 2021/09/30 13:23:09 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/01 10:44:42 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	ft_draw(t_program *game, int x, int y, int color)
 		ft_shutdown();
 	initalize_image(game, image);
 	create_mold(image);
-
 	i = x - 1000;
 	while (++i < x)
 	{
