@@ -6,11 +6,13 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 10:03:52 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/01 14:39:13 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/01 14:57:58 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+//meter los free en los exit
 
 /** PURPOSE : closes program with output signal. */
 static int	ft_exit(int	output)

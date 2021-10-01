@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:20:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/01 14:41:47 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/01 15:09:03 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,14 @@ t_vector	get_dimensions(t_vector dimensions)
 	return (window_dimensions);
 }
 
+/* int	next_frame(t_program *game)
+{
+	put_background(game, dimensions, path_backround);
+} */
+
+
+
+
 /** PURPOSE : init 42minilibx, open window, and load an image.
  * 1. Define structure game (contains the lib and the window) and image.
  * 2. Define structure image (contains address of the image and parameters).
@@ -61,16 +69,11 @@ int main(void)
 	char	*path = "./0images/witch.xpm";
 	char	*path2 = "./0images/red_potion.xpm";
 	char	*path_backround = "./0images/forest_floor.xpm";
-	t_vector	coords;
+
 	t_vector	dimensions;
 	t_vector	window_dimensions;
 	dimensions.x = 30;
 	dimensions.y = 20;
-	coords.x = 0;
-	coords.y = 0;
-
-
-
 
 	game = ft_calloc(1,sizeof(*game));
 	if (!game)
@@ -79,33 +82,22 @@ int main(void)
 	initalize(game, window_dimensions);
 	put_background(game, dimensions, path_backround);
 
-
 	sprite_witch = ft_newsprite(game, path);
+	push_image_towindow(game, sprite_witch, sprite_witch->coords);
+
 	sprite_script = ft_newsprite(game, path2);
+
+	//mlx_loop_hook(game->mlx_pointer, next_frame, game);
 	mlx_loop(game->mlx_pointer);
+	//finish();
 	return (0);
 }
 
-
-
-
-//for admin ONLY window
-/* int ft_close ()
+/* void	finish()
 {
-	exit(0);
-}
-
-t_window	ft_new_window(void *mlx, int widht, int height, char *name)
-{
-	t_window	window;
-
-
-	window.reference = mlx_new_window(mlx, widht, height, name);
-	window.size.x = widht;
-	window.size.y = height;
-
-	// Now we 'hook' the function ft_close() to the closing window event
-	mlx_hook(window.reference, 17, 0, ft_close, 0);
-
-	return (window);
+	¿ Se puede hace un if (game)
+	free(game)?
+	free(game);
+	free(los t_data, sprites, floor)
 } */
+
