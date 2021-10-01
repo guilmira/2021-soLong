@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:20:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/01 15:09:03 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/01 16:48:26 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,63 @@ t_vector	get_dimensions(t_vector dimensions)
 } */
 
 
+void	put_walls(t_program *game, int **map, char *path_backround)
+{
+	t_data		*wall;
+
+	wall = ft_newsprite(game, path_backround);
+
+
+	int i = -1;
+	int j = -1;
+	while (++i < 10)
+	{
+		while (++j < 10)
+		{
+			if (map[i][j] == 1)
+			{
+				wall->coords.x = j * UNIT_HEIGHT;
+				wall->coords.y = i * UNIT_WIDTH;
+				push_image_towindow(game, wall, wall->coords);
+			}
+		}
+		j = -1;
+	}
+
+}
+
+int	**fix_map(t_vector dimensions)
+{
+	int	**map;
+
+	map = ft_calloc(dimensions.y, sizeof(int *));
+	if (!map)
+		ft_shutdown();
+	int j = -1;
+	while (++j < dimensions.x)
+	{
+		map[j] = ft_calloc(dimensions.x, sizeof(int));
+		if (!map[j])
+			ft_shutdown();
+	}
+
+	int i = -1;
+	j = -1;
+	while (++i < dimensions.y)
+	{
+		while (++j < dimensions.x)
+		{;
+			map[i][j] = 0;
+		}
+		j = -1;
+	}
+ 	map[1][7] = 1;
+	map[1][4] = 1;
+	map[1][5] = 1;
+	map[1][6] = 1;
+	map[5][9] = 1;
+	return (map);
+}
 
 
 /** PURPOSE : init 42minilibx, open window, and load an image.
@@ -65,15 +122,18 @@ int main(void)
 	t_program	*game;
 
 	t_data	*sprite_witch;
-	t_data	*sprite_script;
-	char	*path = "./0images/witch.xpm";
-	char	*path2 = "./0images/red_potion.xpm";
+	char	*path = "./0images/witch2.xpm";
+	//char	*path2 = "./0images/red_potion.xpm";
 	char	*path_backround = "./0images/forest_floor.xpm";
+	char	*path_wall = "./0images/t2.xpm";
 
 	t_vector	dimensions;
 	t_vector	window_dimensions;
-	dimensions.x = 30;
-	dimensions.y = 20;
+	dimensions.x = 24;
+	dimensions.y = 12;
+
+	int **map;
+	map = fix_map(dimensions);
 
 	game = ft_calloc(1,sizeof(*game));
 	if (!game)
@@ -81,11 +141,13 @@ int main(void)
 	window_dimensions = get_dimensions(dimensions);
 	initalize(game, window_dimensions);
 	put_background(game, dimensions, path_backround);
+	put_walls(game, map, path_wall);
 
 	sprite_witch = ft_newsprite(game, path);
-	push_image_towindow(game, sprite_witch, sprite_witch->coords);
+	//push_image_towindow(game, sprite_witch, sprite_witch->coords);
 
-	sprite_script = ft_newsprite(game, path2);
+
+
 
 	//mlx_loop_hook(game->mlx_pointer, next_frame, game);
 	mlx_loop(game->mlx_pointer);
@@ -95,6 +157,7 @@ int main(void)
 
 /* void	finish()
 {
+	libera tambien memoria en los ft -shutdown
 	¿ Se puede hace un if (game)
 	free(game)?
 	free(game);
