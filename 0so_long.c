@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:20:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/01 16:48:26 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/02 11:59:10 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,25 @@ int	**fix_map(t_vector dimensions)
 	return (map);
 }
 
+/* t_list	*read_map(void)
+{
+	int		fd;
+	t_list	*list_map;
+	char	*path_map = "./0images/map.ber";
+	char	*line;
+
+	fd = open(path_map, O_RDONLY);
+	if (fd == -1)
+		ft_shutdown();
+	while (get_next_line(fd, &line))//si falla rl gnl poner condicion y hay que liberar
+	{
+		ft_lstadd_back(&list_map, ft_lstnew(line));
+		printf("%s\n", list_map->content);
+	}
+	close(fd);
+	return (list_map);
+
+} */
 
 /** PURPOSE : init 42minilibx, open window, and load an image.
  * 1. Define structure game (contains the lib and the window) and image.
@@ -122,18 +141,17 @@ int main(void)
 	t_program	*game;
 
 	t_data	*sprite_witch;
+
 	char	*path = "./0images/witch2.xpm";
-	//char	*path2 = "./0images/red_potion.xpm";
 	char	*path_backround = "./0images/forest_floor.xpm";
 	char	*path_wall = "./0images/t2.xpm";
-
 	t_vector	dimensions;
 	t_vector	window_dimensions;
 	dimensions.x = 24;
 	dimensions.y = 12;
-
 	int **map;
 	map = fix_map(dimensions);
+
 
 	game = ft_calloc(1,sizeof(*game));
 	if (!game)

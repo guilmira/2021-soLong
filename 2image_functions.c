@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 10:06:45 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/01 11:31:00 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/02 11:58:43 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 /** PURPOSE : Initialize the image with size 1920×1080 as follows: */
 void	initalize_image(t_program *game, t_data *image)
 {
-	image->img = mlx_new_image(game->mlx_pointer,  WINDOW_HEIGHT, WINDOW_WIDTH);
+	image->img = mlx_new_image(game->mlx_pointer, UNIT_HEIGHT, UNIT_WIDTH);
 }
 
 /** PURPOSE : Creates a sort of mold of an image (or a pixel)

@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/01 15:35:54 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/02 10:59:48 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include "mlx.h"
 # include "libft.h"
+# include <fcntl.h>
 # define UNIT_HEIGHT 100
 # define UNIT_WIDTH 100
 
