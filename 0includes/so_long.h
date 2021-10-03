@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/02 14:38:36 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/03 14:28:24 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,19 @@
 # include "mlx.h"
 # include "libft.h"
 # include <fcntl.h>
-# define UNIT_HEIGHT 100
-# define UNIT_WIDTH 100
+# define UNIT_HEIGHT 70
+# define UNIT_WIDTH 70
 
 # define PATH_MAP "./0images/map2.ber"
 # define PATH_CHARACTER "./0images/witch2.xpm"
-# define PATH_BACKGROUND "./0images/forest_floor.xpm"
-# define PATH_WALL "./0images/t2.xpm"
+# define PATH_CHARACTER2 "./0images/witch3.xpm"
+# define PATH_BACKGROUND "./0images/grass.xpm"
+# define PATH_WALL "./0images/wall.xpm"
+
+//1920, 1080
+//2560, 1440 mac screen
+//36 de largo
+//70 x 70
 
 /** PURPOSE : struct that stores pointers of the mxl init and
  * the window init. Both pointers will be constantly refered to */
@@ -69,6 +75,8 @@ void		push_image_towindow(t_program *game, t_data *image, t_vector coords);
 t_data		*ft_newsprite(t_program *game, char *path);
 
 
+void		put_walls(t_program *game, char **map, t_vector dimensions, t_data *wall);
+void		put_background(t_program *game, t_vector dimensions, t_data *floor);
 
 
 /* RNDM DRAWING */
