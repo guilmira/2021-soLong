@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 10:30:47 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/01 12:08:55 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/04 16:07:20 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,10 @@
  * IMPORTANT!: Every variable passed by reference is an OUTPUT. */
 static void	load_image_n_getdata(t_program *game, t_data *new_image, char *path)
 {
-	new_image->img = mlx_xpm_file_to_image(game->mlx_pointer, path, &new_image->coords.x, &new_image->coords.y);
-	new_image->addr  = mlx_get_data_addr(new_image->img, &new_image->bits_per_pixel, \
+	new_image->img = mlx_xpm_file_to_image(game->mlx_pointer, \
+	path, &new_image->coords.x, &new_image->coords.y);
+	new_image->addr = mlx_get_data_addr(new_image->img, \
+	&new_image->bits_per_pixel, \
 	&new_image->line_length, &new_image->endian);
 }
 

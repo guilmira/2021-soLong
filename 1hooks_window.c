@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 10:03:52 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/04 14:59:53 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/04 16:06:06 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 //meter los free en los exit
 
 /** PURPOSE : closes program with output signal. */
-static int	ft_exit(int	output)
+static int	ft_exit(int output)
 {
 	exit(output);
 }
 
 /** PURPOSE : closes window when ESC. */
-static int	ft_esc_exit(int	keycode, int i)
+static int	ft_esc_exit(int keycode, int i)
 {
 	if (keycode == 53)
 		exit(i);
@@ -45,7 +45,7 @@ void	init_game(t_program *game)
 		full_shutdown(game);
 	game->window = NULL;
 	game->map2D = NULL;
-	game->database = NULL;
+	game->db = NULL;
 	game->number_images = TOTAL_IMAGES;
 	game->floor = NULL;
 	game->wall = NULL;
@@ -69,10 +69,8 @@ void	init_window(t_program *game, t_vector window_dimensions)
 /** PURPOSE : init image database and set pointers to NULL. */
 void	init_database(t_program *game)
 {
-	game->database->sprite1 = NULL;
-	game->database->sprite2 = NULL;
-	game->database->sprite3 = NULL;
- 	game->database->sprite4 = NULL;
-	/* game->database->sprite5 = NULL;
-	game->database->sprite6 = NULL; */
+	game->db->sprite1 = NULL;
+	game->db->sprite2 = NULL;
+	game->db->sprite3 = NULL;
+	game->db->sprite4 = NULL;
 }

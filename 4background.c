@@ -6,13 +6,13 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 12:53:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/04 13:29:29 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/04 16:08:01 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-//revisar que en una usas la estructura y en otra no. es encesario coords en estructura??
+//PENDIENTE!!: revisar que en una usas la estructura y en otra no. es encesario coords en estructura??
 
 /** PURPOSE : Lay background layer by iterating through loop. */
 static void	put_background(t_program *game, t_vector dimensions, t_data *floor)
@@ -27,7 +27,6 @@ static void	put_background(t_program *game, t_vector dimensions, t_data *floor)
 	x = -1;
 	while (++y <= dimensions.y)
 	{
-
 		while (++x < dimensions.x)
 		{
 			coords.x = x * UNIT_WIDTH;
@@ -40,7 +39,8 @@ static void	put_background(t_program *game, t_vector dimensions, t_data *floor)
 }
 
 /** PURPOSE : Lay wall layer by iterating through loop. */
-static void	put_walls(t_program *game, char **map, t_vector dimensions, t_data *wall)
+static void	put_walls(t_program *game, char **map, \
+			t_vector dimensions, t_data *wall)
 {
 	int	i;
 	int	j;
@@ -49,12 +49,10 @@ static void	put_walls(t_program *game, char **map, t_vector dimensions, t_data *
 	j = -1;
 	while (++i < dimensions.y)
 	{
-
 		while (++j < dimensions.x)
 		{
 			if ((char) map[i][j] == '1')
 			{
-
 				wall->coords.x = j * UNIT_HEIGHT;
 				wall->coords.y = i * UNIT_WIDTH;
 				push_image_towindow(game, wall, wall->coords);

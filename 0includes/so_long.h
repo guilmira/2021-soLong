@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/04 15:00:28 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/04 16:04:09 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <fcntl.h>
 # define UNIT_HEIGHT 70
 # define UNIT_WIDTH 70
+# define FACTOR_SPRITE 1.3
 # define TOTAL_IMAGES 3
 # define WINDOW_NAME "Aquelarre"
 # define ANIMATION_FRAME 2000
@@ -60,8 +61,6 @@ typedef struct s_databaseimages
 	t_data		*sprite2;
 	t_data		*sprite3;
 	t_data		*sprite4;
-	t_data		*sprite5;
-	t_data		*sprite6;
 }				t_imagedb;
 
 /** PURPOSE : struct that stores pointers of the mxl init and
@@ -73,7 +72,7 @@ typedef struct	s_program
 	t_vector	array_dimensions;
 	char		**map2D;
 	int			number_images;
-	t_imagedb	*database;
+	t_imagedb	*db;
 	t_data		*floor;
 	t_data		*wall;
 	t_data		*collectible;
@@ -96,14 +95,15 @@ void		put_pixel(t_data *data, int x, int y, int color);
 void		push_image_towindow(t_program *game, t_data *image, t_vector coords);
 /* CREATE SPRITES */
 t_data		*ft_newsprite(t_program *game, char *path);
-
-void	put_floor_and_walls(t_program *game);
-
+/* PUT BACKGROUND */
+void		put_floor_and_walls(t_program *game);
+/* LOOP SPRITE MOVEMENT */
+void		put_sprite(t_program *game, t_vector coords);
+int			next_frame(t_program *game);
 /* CLEAR MEMORY */
-void	full_shutdown(t_program *game);
+void		full_shutdown(t_program *game);
+void		init_database(t_program *game);
 
-
-void	init_database(t_program *game);
 
 /* RNDM DRAWING */
 void		ft_draw(t_program *game, int x, int y, int color);
