@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 10:03:52 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/01 14:57:58 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/04 11:12:05 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,28 @@ static int	ft_resize(int i)
  * need it in order to work.
  * 2. Open window, save pointer for later use.
  * 3. Establishes closing window hook */
-void	initalize(t_program *game, t_vector window_dimensions)
+void	init_game(t_program *game)
 {
 	game->mlx_pointer = mlx_init();
+	if (!game->mlx_pointer)
+		full_shutdown(game);
+	game->window = NULL;
+	game->map2D = NULL;
+	game->database = NULL;
+	game->number_images = TOTAL_IMAGES;
+}
+
+/** PURPOSE : init 42minilibx and open window.
+ * 1. mlx_returns a pointer (void *). A lot of the library functions
+ * need it in order to work.
+ * 2. Open window, save pointer for later use.
+ * 3. Establishes closing window hook */
+void	init_window(t_program *game, t_vector window_dimensions)
+{
 	game->window = mlx_new_window(game->mlx_pointer, \
-	window_dimensions.x, window_dimensions.y, "Aquelarre");
-	if (!game->window || !game->mlx_pointer)
-		ft_shutdown();
+	window_dimensions.x, window_dimensions.y, WINDOW_NAME);
+	if (!game->window) //might need to free MAP as well. Use return an int of -1 and ther full shutodwon.
+		full_shutdown(game);
 	mlx_key_hook(game->window, ft_esc_exit, 0);
 	mlx_hook(game->window, 17, 0, ft_exit, 0);
 	mlx_hook(game->window, 25, 0, ft_resize, 0);

@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/03 14:28:24 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/04 11:14:46 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <fcntl.h>
 # define UNIT_HEIGHT 70
 # define UNIT_WIDTH 70
+# define TOTAL_IMAGES 2
+# define WINDOW_NAME "Aquelarre"
 
 # define PATH_MAP "./0images/map2.ber"
 # define PATH_CHARACTER "./0images/witch2.xpm"
@@ -30,14 +32,6 @@
 //2560, 1440 mac screen
 //36 de largo
 //70 x 70
-
-/** PURPOSE : struct that stores pointers of the mxl init and
- * the window init. Both pointers will be constantly refered to */
-typedef struct	s_program
-{
-	void	*mlx_pointer;
-	void	*window;
-}			t_program;
 
 /** PURPOSE : struct of a vector, 2D representation. */
 typedef struct s_vector
@@ -57,13 +51,34 @@ typedef struct	s_data
 	int			endian;
 }				t_data;
 
+typedef struct s_databaseimages
+{
+	t_data	*sprite1;
+	t_data	*sprite2;
+}				t_imagedb;
+
+/** PURPOSE : struct that stores pointers of the mxl init and
+ * the window init. Both pointers will be constantly refered to */
+typedef struct	s_program
+{
+	void		*mlx_pointer;
+	void		*window;
+	t_vector	array_dimensions;
+	char		**map2D;
+	int			number_images;
+	t_imagedb	**database;
+}				t_program;
+
+
+
 
 /* MAP PARSER */
 t_vector	get_dimensions(t_list *list_map);
 char		**fix_map(t_list *list_map, t_vector dimensions);
 t_list		*read_map(void);
 /* WINDOW CONTROL INIT AND HOOKS */
-void		initalize(t_program *game, t_vector window_dimensions);
+void		init_game(t_program *game);
+void		init_window(t_program *game, t_vector window_dimensions);
 /* WINDOW SIZE */
 t_vector	get_window_dimensions(t_vector dimensions);
 /* IMAGE TREATMENT */
@@ -78,6 +93,9 @@ t_data		*ft_newsprite(t_program *game, char *path);
 void		put_walls(t_program *game, char **map, t_vector dimensions, t_data *wall);
 void		put_background(t_program *game, t_vector dimensions, t_data *floor);
 
+
+/* CLEAR MEMORY */
+void	full_shutdown(t_program *game);
 
 /* RNDM DRAWING */
 void		ft_draw(t_program *game, int x, int y, int color);
