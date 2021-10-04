@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 10:03:52 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/04 11:12:05 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/04 14:59:53 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,9 @@ static int	ft_resize(int i)
 	return (i);
 }
 
-/** PURPOSE : init 42minilibx and open window.
+/** PURPOSE : init 42minilibx and set pointers to NULL.
  * 1. mlx_returns a pointer (void *). A lot of the library functions
- * need it in order to work.
- * 2. Open window, save pointer for later use.
- * 3. Establishes closing window hook */
+ * need it in order to work. */
 void	init_game(t_program *game)
 {
 	game->mlx_pointer = mlx_init();
@@ -49,13 +47,14 @@ void	init_game(t_program *game)
 	game->map2D = NULL;
 	game->database = NULL;
 	game->number_images = TOTAL_IMAGES;
+	game->floor = NULL;
+	game->wall = NULL;
+	game->collectible = NULL;
 }
 
-/** PURPOSE : init 42minilibx and open window.
- * 1. mlx_returns a pointer (void *). A lot of the library functions
- * need it in order to work.
- * 2. Open window, save pointer for later use.
- * 3. Establishes closing window hook */
+/** PURPOSE : open window.
+ * 1. Open window, save pointer for later use.
+ * 2. Establishes closing window hook */
 void	init_window(t_program *game, t_vector window_dimensions)
 {
 	game->window = mlx_new_window(game->mlx_pointer, \
@@ -65,4 +64,15 @@ void	init_window(t_program *game, t_vector window_dimensions)
 	mlx_key_hook(game->window, ft_esc_exit, 0);
 	mlx_hook(game->window, 17, 0, ft_exit, 0);
 	mlx_hook(game->window, 25, 0, ft_resize, 0);
+}
+
+/** PURPOSE : init image database and set pointers to NULL. */
+void	init_database(t_program *game)
+{
+	game->database->sprite1 = NULL;
+	game->database->sprite2 = NULL;
+	game->database->sprite3 = NULL;
+ 	game->database->sprite4 = NULL;
+	/* game->database->sprite5 = NULL;
+	game->database->sprite6 = NULL; */
 }

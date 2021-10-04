@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 12:53:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/04 11:53:29 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/04 13:29:29 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,13 +67,12 @@ static void	put_walls(t_program *game, char **map, t_vector dimensions, t_data *
 /** PURPOSE : Lay 2 layers, the background and the walls. */
 void	put_floor_and_walls(t_program *game)
 {
-	t_data	*floor;
-	t_data	*wall;
-
-	floor = ft_newsprite(game, PATH_BACKGROUND);
-	put_background(game, game->array_dimensions, floor);
-	//destroy floor
-	wall = ft_newsprite(game, PATH_WALL);
-	put_walls(game, game->map2D, game->array_dimensions, wall);
-	//destroy walls
+	game->floor = ft_newsprite(game, PATH_BACKGROUND);
+	put_background(game, game->array_dimensions, game->floor);
+	//mlx_destroy_image(game->mlx_pointer, floor->img);
+	//free(floor);
+	game->wall = ft_newsprite(game, PATH_WALL);
+	put_walls(game, game->map2D, game->array_dimensions, game->wall);
+	//mlx_destroy_image(game->mlx_pointer, wall->img);
+	//free(wall); paarece k funciona, destroy puede k no libere todo
 }
