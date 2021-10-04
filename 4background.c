@@ -6,22 +6,23 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 12:53:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/03 14:29:57 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/04 11:53:29 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	put_background(t_program *game, t_vector dimensions, t_data *floor)
+//revisar que en una usas la estructura y en otra no. es encesario coords en estructura??
+
+/** PURPOSE : Lay background layer by iterating through loop. */
+static void	put_background(t_program *game, t_vector dimensions, t_data *floor)
 {
-	//t_data		*floor;
-	t_vector	coords;
 	int			y;
 	int			x;
+	t_vector	coords;
 
-	coords.x = 0;
 	coords.y = 0;
-	//floor = ft_newsprite(game, PATH_BACKGROUND);
+	coords.x = 0;
 	y = -1;
 	x = -1;
 	while (++y <= dimensions.y)
@@ -38,14 +39,14 @@ void	put_background(t_program *game, t_vector dimensions, t_data *floor)
 	}
 }
 
-void	put_walls(t_program *game, char **map, t_vector dimensions, t_data *wall)
+/** PURPOSE : Lay wall layer by iterating through loop. */
+static void	put_walls(t_program *game, char **map, t_vector dimensions, t_data *wall)
 {
-	//t_data		*wall;
+	int	i;
+	int	j;
 
-	//wall = ft_newsprite(game, PATH_WALL);
-
-	int i = -1;
-	int j = -1;
+	i = -1;
+	j = -1;
 	while (++i < dimensions.y)
 	{
 
@@ -61,5 +62,18 @@ void	put_walls(t_program *game, char **map, t_vector dimensions, t_data *wall)
 		}
 		j = -1;
 	}
+}
 
+/** PURPOSE : Lay 2 layers, the background and the walls. */
+void	put_floor_and_walls(t_program *game)
+{
+	t_data	*floor;
+	t_data	*wall;
+
+	floor = ft_newsprite(game, PATH_BACKGROUND);
+	put_background(game, game->array_dimensions, floor);
+	//destroy floor
+	wall = ft_newsprite(game, PATH_WALL);
+	put_walls(game, game->map2D, game->array_dimensions, wall);
+	//destroy walls
 }

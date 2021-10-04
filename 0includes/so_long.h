@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/04 11:14:46 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/04 11:53:42 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ typedef struct	s_data
 
 typedef struct s_databaseimages
 {
-	t_data	*sprite1;
-	t_data	*sprite2;
+	t_data		*sprite1;
+	t_data		*sprite2;
 }				t_imagedb;
 
 /** PURPOSE : struct that stores pointers of the mxl init and
@@ -66,7 +66,7 @@ typedef struct	s_program
 	t_vector	array_dimensions;
 	char		**map2D;
 	int			number_images;
-	t_imagedb	**database;
+	t_imagedb	*database;
 }				t_program;
 
 
@@ -89,10 +89,7 @@ void		push_image_towindow(t_program *game, t_data *image, t_vector coords);
 /* CREATE SPRITES */
 t_data		*ft_newsprite(t_program *game, char *path);
 
-
-void		put_walls(t_program *game, char **map, t_vector dimensions, t_data *wall);
-void		put_background(t_program *game, t_vector dimensions, t_data *floor);
-
+void	put_floor_and_walls(t_program *game);
 
 /* CLEAR MEMORY */
 void	full_shutdown(t_program *game);
