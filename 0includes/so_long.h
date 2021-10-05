@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/05 10:40:22 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/05 12:23:32 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <fcntl.h>
 # define UNIT_HEIGHT 70
 # define UNIT_WIDTH 70
-# define FACTOR_SPRITE 1.3
+# define FACTOR_SPRITE 0.25
 # define TOTAL_IMAGES 3
 # define WINDOW_NAME "Aquelarre"
 # define ANIMATION_FRAME 2000
@@ -114,7 +114,9 @@ int			next_frame(t_program *game);
 /* CLEAR MEMORY */
 void		full_shutdown(t_program *game);
 void		init_database(t_program *game);
-
+/* CHARACTER MOVEMENT */
+t_bool	allow_movement(char **map2D, t_vector position, int key);
+int	movement_character(int key, t_program *game);
 
 /* RNDM DRAWING */
 void		ft_draw(t_program *game, int x, int y, int color);

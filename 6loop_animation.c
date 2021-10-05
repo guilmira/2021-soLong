@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   6loop_movement.c                                   :+:      :+:    :+:   */
+/*   6loop_animation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 15:59:31 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/05 11:50:13 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/05 12:22:02 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	put_sprite(t_program *game, t_vector coords)
 	static int	frame;
 	t_vector	position;
 
-	//position.x = UNIT_WIDTH * FACTOR_SPRITE * coords.x;
-	position.x = UNIT_WIDTH * coords.x;
+	position.x = UNIT_WIDTH * coords.x + (UNIT_WIDTH * FACTOR_SPRITE);
+	//position.x = UNIT_WIDTH * coords.x;
 	position.y = UNIT_HEIGHT * coords.y;
 	if (frame == ANIMATION_FRAME || frame == ANIMATION_FRAME * 2 \
 	|| frame == ANIMATION_FRAME * 3 || frame >= ANIMATION_FRAME * 4)
