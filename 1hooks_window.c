@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 10:03:52 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/04 16:06:06 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/05 10:38:04 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,23 @@ void	init_game(t_program *game)
 	if (!game->mlx_pointer)
 		full_shutdown(game);
 	game->window = NULL;
+
+	game->character_coords.x = 1;
+	game->character_coords.y = 1;
+
+
 	game->map2D = NULL;
 	game->db = NULL;
 	game->number_images = TOTAL_IMAGES;
 	game->floor = NULL;
 	game->wall = NULL;
 	game->collectible = NULL;
+
+	//si lo poens aqui, habra que liberar en cada exit mas adelante
+	game->db = ft_calloc(game->number_images, sizeof(game->db));
+	if(!game->db)
+		full_shutdown(game);
+	init_database(game);
 }
 
 /** PURPOSE : open window.

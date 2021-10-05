@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/04 16:04:09 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/05 10:40:22 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@
 # define TOTAL_IMAGES 3
 # define WINDOW_NAME "Aquelarre"
 # define ANIMATION_FRAME 2000
+# define LEFT 123
+# define RIGHT 124
+# define UP 125
+# define DOWN 126
+# define CHARACTER 'P'
+
+
 
 # define PATH_MAP "./0images/map2.ber"
 # define PATH_CHARACTER "./0images/1.xpm"
@@ -70,6 +77,7 @@ typedef struct	s_program
 	void		*mlx_pointer;
 	void		*window;
 	t_vector	array_dimensions;
+	t_vector	character_coords;
 	char		**map2D;
 	int			number_images;
 	t_imagedb	*db;
@@ -95,10 +103,13 @@ void		put_pixel(t_data *data, int x, int y, int color);
 void		push_image_towindow(t_program *game, t_data *image, t_vector coords);
 /* CREATE SPRITES */
 t_data		*ft_newsprite(t_program *game, char *path);
+void	animation_init(t_program *game);
+t_vector	element_position(char **map, t_vector array_dimensions, char z);
 /* PUT BACKGROUND */
 void		put_floor_and_walls(t_program *game);
 /* LOOP SPRITE MOVEMENT */
 void		put_sprite(t_program *game, t_vector coords);
+void	wash_floor(t_program *game, t_vector coords);
 int			next_frame(t_program *game);
 /* CLEAR MEMORY */
 void		full_shutdown(t_program *game);

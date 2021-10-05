@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 12:53:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/04 16:08:01 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/05 10:18:52 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	put_floor_and_walls(t_program *game)
 	//mlx_destroy_image(game->mlx_pointer, floor->img);
 	//free(floor);
 	game->wall = ft_newsprite(game, PATH_WALL);
+
 	put_walls(game, game->map2D, game->array_dimensions, game->wall);
 	//mlx_destroy_image(game->mlx_pointer, wall->img);
 	//free(wall); paarece k funciona, destroy puede k no libere todo
