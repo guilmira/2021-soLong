@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:20:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/05 12:11:20 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/06 14:22:18 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,24 @@ int main(void)
 	t_program	*game;
 	t_list		*list_map;
 
+	list_map = NULL;
 	game = ft_calloc(1, sizeof(*game));
 	if (!game)
 		ft_shutdown();
 	init_game(game);
 	list_map = read_map();
 	if (!list_map)
-		full_shutdown(game);
+		full_shutdown(game, EX2);
 	game->array_dimensions = get_dimensions(list_map);
 	game->map2D = fix_map(list_map, game->array_dimensions);
-	ft_fullclear(list_map); //quiza no reventar lista
+	if (!(game->map2D))
+		full_shutdown(game, EX2);
+	ft_fullclear(list_map); //PENDIENTE: quiza no reventar lista
 	init_window(game, get_window_dimensions(game->array_dimensions));
 	put_floor_and_walls(game);
 	animation_init(game);
-
 	mlx_key_hook(game->window, movement_character, game);
-
-	mlx_loop_hook(game->mlx_pointer, next_frame, game); //carga las imagenes en la estructura y fuera. puedes probar a enviar dos argumentos CAMBIANDO el prototipo y pasar dos estructuras
+	mlx_loop_hook(game->mlx_pointer, next_frame, game);
 	mlx_loop(game->mlx_pointer);
 	//finish();
 	return (0);

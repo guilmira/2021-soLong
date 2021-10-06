@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/05 14:14:19 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/06 10:27:21 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # define UNIT_HEIGHT 70
 # define UNIT_WIDTH 70
 # define FACTOR_SPRITE 0.25
-# define TOTAL_IMAGES 3
 # define WINDOW_NAME "Aquelarre"
 # define ANIMATION_FRAME 2000
 # define LEFT 123
@@ -38,6 +37,12 @@
 # define PATH_CHARACTER4 "./0images/4.xpm"
 # define PATH_BACKGROUND "./0images/grass.xpm"
 # define PATH_WALL "./0images/wall.xpm"
+
+
+# define EX		"Error.\n"
+# define EX1	"No memory available for allocation.\n"
+# define EX2	"Reading file was unsuccessful. File must have content. \n"
+# define EX3	"Could not generate new window.\n"
 
 //1920, 1080
 //2560, 1440 mac screen
@@ -79,11 +84,10 @@ typedef struct	s_program
 	t_vector	array_dimensions;
 	t_vector	character_coords;
 	char		**map2D;
-	int			number_images;
-	t_imagedb	*db;
 	t_data		*floor;
 	t_data		*wall;
 	t_data		*collectible;
+	t_imagedb	*db;
 }				t_program;
 
 
@@ -91,8 +95,9 @@ typedef struct	s_program
 t_vector	get_dimensions(t_list *list_map);
 char		**fix_map(t_list *list_map, t_vector dimensions);
 t_list		*read_map(void);
-/* WINDOW CONTROL INIT AND HOOKS */
+/* STRUCT INIT */
 void		init_game(t_program *game);
+/* WINDOW CONTROL INIT AND HOOKS */
 void		init_window(t_program *game, t_vector window_dimensions);
 /* WINDOW SIZE */
 t_vector	get_window_dimensions(t_vector dimensions);
@@ -112,8 +117,8 @@ void		put_sprite(t_program *game, t_vector coords);
 void	wash_floor(t_program *game, t_vector coords);
 int			next_frame(t_program *game);
 /* CLEAR MEMORY */
-void		full_shutdown(t_program *game);
-void		init_database(t_program *game);
+void		clean_memory(t_program *game);
+void		full_shutdown(t_program *game, char *string);
 /* CHARACTER MOVEMENT */
 t_bool	allow_movement(char **map2D, t_vector position, int key);
 int	movement_character(int key, t_program *game);
