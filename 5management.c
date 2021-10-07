@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 10:40:52 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/06 14:01:17 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 09:29:17 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	clean_memory(t_program *game)
 		free_map(game);
 	if (game->db)
 		free(game);
+
 }
 
 /** PURPOSE : shutdown program meanwhile freeing heap allocated memory.

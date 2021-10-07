@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:20:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/06 14:22:18 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 09:25:08 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int main(void)
 		full_shutdown(game, EX2);
 	game->array_dimensions = get_dimensions(list_map);
 	game->map2D = fix_map(list_map, game->array_dimensions);
+	ft_fullclear(list_map);
 	if (!(game->map2D))
 		full_shutdown(game, EX2);
-	ft_fullclear(list_map); //PENDIENTE: quiza no reventar lista
 	init_window(game, get_window_dimensions(game->array_dimensions));
 	put_floor_and_walls(game);
 	animation_init(game);
