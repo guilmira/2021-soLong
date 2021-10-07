@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 10:30:47 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 13:28:58 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 14:02:47 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	load_image_n_getdata(t_program *game, t_data *new_image, char *path)
 
 /** PURPOSE : Handles creation of sprite.
  * All variables are handled with t_data pointer. */
-t_data	*ft_newsprite(t_program *game, char *path)
+static t_data	*ft_newsprite(t_program *game, char *path)
 {
 	t_data	*new_image;
 
@@ -64,12 +64,39 @@ t_vector	element_position(char **map, t_vector array_dimensions, char z)
 	return (element);
 }
 
-/** PURPOSE : Loads every animation of main sprite. */
-/* void	animation_init(t_program *game)
+/** PURPOSE : Load static images by searching path. */
+t_data	**load_images(t_program *game)
 {
-	game->character_coords = element_position(game->map2D, game->array_dimensions, CHARACTER);
-	game->db->sprite1 = ft_newsprite(game, PATH_CHARACTER);
-	game->db->sprite2 = ft_newsprite(game, PATH_CHARACTER2);
-	game->db->sprite3 = ft_newsprite(game, PATH_CHARACTER3);
-	game->db->sprite4 = ft_newsprite(game, PATH_CHARACTER4);
-} */
+	t_data	**static_images;
+	int		i;
+
+	i = -1;
+
+	static_images = ft_calloc(NUMBER_IMAGES + 1, sizeof(t_data **));
+	if (!static_images)
+		return (NULL);
+	static_images[0] = ft_newsprite(game, PATH_BACKGROUND);
+	static_images[1] = ft_newsprite(game, PATH_WALL);
+	static_images[2] = NULL;
+	//static_images[2] = ft_newsprite(game, PATH_COLLECT);
+	//static_images[3] = NULL;
+	return (static_images);
+}
+
+/** PURPOSE : Load animations by searching path. */
+t_data	**load_animations(t_program *game)
+{
+	t_data	**animations;
+	int		i;
+
+	i = -1;
+	animations = ft_calloc(NUMBER_ANIMATIONS + 1, sizeof(t_data **));
+	if (!animations)
+		return (NULL);
+	animations[0] = ft_newsprite(game, PATH_CHARACTER1);
+	animations[1] = ft_newsprite(game, PATH_CHARACTER2);
+	animations[2] = ft_newsprite(game, PATH_CHARACTER3);
+	animations[3] = ft_newsprite(game, PATH_CHARACTER4);
+	animations[4] = NULL;
+	return (animations);
+}

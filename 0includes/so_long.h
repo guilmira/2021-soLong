@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 13:24:28 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 13:49:51 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 /* PATH TO MAP */
 # define PATH_MAP "./1maps/map2.ber"
 /* ANIMATION SETTINGS */
-# define ANIMATION_FRAME 2000
+# define ANIMATION_FRAME 1700
 # define FACTOR_SPRITE 0.25
 /* PATH TO IMAGES */
 # define PATH_CHARACTER1 "./0images/0witch/1.xpm"
@@ -72,14 +72,6 @@ typedef struct	s_data
 	int			endian;
 }				t_data;
 
-/* typedef struct s_databaseimages
-{
-	t_data		*sprite1;
-	t_data		*sprite2;
-	t_data		*sprite3;
-	t_data		*sprite4;
-}				t_imagedb; */
-
 /** PURPOSE : struct that stores pointers of the mxl init and
  * the window init. Both pointers will be constantly refered to */
 typedef struct	s_program
@@ -91,7 +83,6 @@ typedef struct	s_program
 	char		**map2D;
 	t_data		**static_images;
 	t_data		**animations;
-	//t_imagedb	*db;
 }				t_program;
 
 /* MAP PARSER */
@@ -109,8 +100,8 @@ void		create_mold(t_data *image);
 void		put_pixel(t_data *data, int x, int y, int color);
 void		push_image_towindow(t_program *game, t_data *image, t_vector coords);
 /* CREATE SPRITES */
-t_data		*ft_newsprite(t_program *game, char *path);
-void	animation_init(t_program *game);
+t_data	**load_images(t_program *game);
+t_data	**load_animations(t_program *game);
 t_vector	element_position(char **map, t_vector array_dimensions, char z);
 /* PUT BACKGROUND */
 void		put_floor_and_walls(t_program *game);

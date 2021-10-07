@@ -6,20 +6,11 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 09:19:00 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 13:30:48 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 13:54:10 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-/** PURPOSE : init image database and set pointers to NULL. */
-/* static void	init_database(t_program *game)
-{
-	game->db->sprite1 = NULL;
-	game->db->sprite2 = NULL;
-	game->db->sprite3 = NULL;
-	game->db->sprite4 = NULL;
-} */
 
 /** PURPOSE : init 42minilibx and set pointers to NULL.
  * 1. mlx_returns a pointer (void *). A lot of the library functions
@@ -37,13 +28,6 @@ void	init_game(t_program *game)
 	game->character_coords.x = 0;
 	game->character_coords.y = 0;
 	game->map2D = NULL;
-
-
 	game->static_images = NULL;
 	game->animations = NULL;
-	//game->db = NULL;
-	/* game->db = ft_calloc(1, sizeof(t_imagedb));
-	if(!game->db)
-		full_shutdown(game, EX1); */
-	//init_database(game);
 }
