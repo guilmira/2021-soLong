@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:07:03 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 10:08:18 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 10:28:08 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,7 @@ int	movement_character(int key, t_program *game)
 		execute_movement(game, position, UP);
 	else if (key == DOWN && allow_movement(game->map2D, position, DOWN))
 		execute_movement(game, position, DOWN);
+	else if (key == 53)
+		clean_exit(game);
 	return (0);
 }

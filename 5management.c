@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 10:40:52 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 10:12:47 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 10:29:46 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,13 @@ void	full_shutdown(t_program *game, char *string)
 }
 
 /** PURPOSE : Neat program exit.
- * 1. Clean memory for all structs allocated.
- * 2. Exit program without output message. */
+ * 1. Close window if exists.
+ * 2. Clean memory for all structs allocated.
+ * 3. Exit program without output message. */
 void	clean_exit(t_program *game)
 {
-	mlx_destroy_window(game->mlx_pointer, game->window);
+	if (game->window)
+		mlx_destroy_window(game->mlx_pointer, game->window);
 	clean_memory(game);
 	exit(0);
 }

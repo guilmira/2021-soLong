@@ -6,27 +6,19 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 10:03:52 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 09:54:48 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 10:29:12 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-//meter los free en los exit. tambien los close window y destryo images.
+// destryo images.
 
 /** PURPOSE : closes program with output signal. */
 static int	ft_exit(t_program *game)
 {
 	clean_exit(game);
 	exit(0);
-}
-
-/** PURPOSE : closes window when ESC. */
-static int	ft_esc_exit(int keycode, t_program *game)
-{
-	if (keycode == 53)
-		clean_exit(game);
-	return (0);
 }
 
 /** PURPOSE : open window.
@@ -38,7 +30,6 @@ void	init_window(t_program *game, t_vector window_dimensions)
 	window_dimensions.x, window_dimensions.y, WINDOW_NAME);
 	if (!game->window) //might need to free window later on. check manual..
 		full_shutdown(game, EX3);
-	mlx_key_hook(game->window, ft_esc_exit, game);
 	mlx_hook(game->window, 17, 0, ft_exit, game);
 }
 

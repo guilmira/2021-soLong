@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:20:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 10:12:08 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 10:27:38 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,8 @@ int main(void)
 	mlx_key_hook(game->window, movement_character, game);
 	mlx_loop_hook(game->mlx_pointer, next_frame, game);
 	mlx_loop(game->mlx_pointer);
-	//finish();
 	return (0);
 }
-
 
 /* los strings (como un emnsaje de error que se pasa x argumento) hay que reservarles
 memoria?? o quiza sea mejor meterlos con un define.  */
@@ -54,10 +52,4 @@ memoria?? o quiza sea mejor meterlos con un define.  */
 //mostrar nombre de Morgana con letras chulas, movimientos y quiza una barra de vida.
 //todo lo quej ahaggas es apra promocionar el juego.
 
-/* void	finish()
-{
-	libera tambien memoria en los ft -shutdown
-	free(game);
-	free(los t_data, sprites, floor)
-} */
 

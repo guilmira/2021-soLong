@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 10:16:53 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 10:23:14 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,11 @@
 # include "mlx.h"
 # include "libft.h"
 # include <fcntl.h>
-# define UNIT_HEIGHT 70
-# define UNIT_WIDTH 70
-# define FACTOR_SPRITE 0.25
-# define WINDOW_NAME "Aquelarre"
-# define ANIMATION_FRAME 2000
-# define LEFT 123
-# define RIGHT 124
-# define UP 125
-# define DOWN 126
-# define CHARACTER 'P'
-
 /* PATH TO MAP */
 # define PATH_MAP "./1maps/map2.ber"
+/* ANIMATION SETTINGS */
+# define ANIMATION_FRAME 2000
+# define FACTOR_SPRITE 0.25
 /* PATH TO IMAGES */
 # define PATH_CHARACTER "./0images/0witch/1.xpm"
 # define PATH_CHARACTER2 "./0images/0witch/2.xpm"
@@ -42,11 +34,20 @@
 # define EX1	"No memory available for allocation.\n"
 # define EX2	"Reading file was unsuccessful. File must have content. \n"
 # define EX3	"Could not generate new window.\n"
-
-//1920, 1080
-//2560, 1440 mac screen
-//36 de largo
-//70 x 70
+/* WINDOW NAME */
+# define WINDOW_NAME "Retro Aquelarre"
+/* MAXIMUN WINDOW SIZE ALOWED - Mac Screen: 2560 x 1440 */
+# define MAX_HEIGHT 1
+# define MAX_WIDTH 36
+/* TILE DIMENSIONS */
+# define UNIT_HEIGHT 70
+# define UNIT_WIDTH 70
+/* MOUSE KEYS AND MAP CHARACTERS */
+# define LEFT 123
+# define RIGHT 124
+# define UP 125
+# define DOWN 126
+# define CHARACTER 'P'
 
 /** PURPOSE : struct of a vector, 2D representation. */
 typedef struct s_vector
