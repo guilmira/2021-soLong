@@ -6,11 +6,16 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:20:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 10:27:38 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 12:05:09 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	leaks(void)
+{
+	system("leaks so_long");
+}
 
 /** PURPOSE : init 42minilibx, open window, and load an image.
  * 1. Define structure game (contains the lib and the window) and image.
@@ -21,12 +26,14 @@ int main(void)
 	t_program	*game;
 	t_list		*list_map;
 
+	//atexit(leaks);
 	list_map = NULL;
 	game = ft_calloc(1, sizeof(*game));
 	if (!game)
 		ft_shutdown();
 	init_game(game);
 	list_map = read_map();
+	//system("leaks so_long");
 	//list_map = NULL;
 	if (!list_map)
 		full_shutdown(game, EX2);

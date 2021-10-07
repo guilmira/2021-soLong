@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 14:20:31 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/06 14:17:16 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 12:04:08 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@ t_vector	get_dimensions(t_list *list_map)
  * then 8 pointers are needed.
  * 2. Allocate mem for each string using string duplicate.
  * IMPORTANT : if mem alloc fails, function returns NULL.
+ * IMPORTANT2 : when using calloc, sizeof(char **) works pefectly,
+ * meanhwile sizeof(**map) will eventually give seg-fault
  * Full-shutdown and freeing memory will be executed in main. */
 char	**fix_map(t_list *list_map, t_vector dimensions)
 {
 	int		j;
 	char	**map;
 
-	//map = ft_calloc(dimensions.y, sizeof(**map)); ESTe  SEG FAULT
 	map = ft_calloc(dimensions.y, sizeof(char **));
 	if (!map)
 		return (NULL);
@@ -55,39 +56,34 @@ char	**fix_map(t_list *list_map, t_vector dimensions)
  * 3. Use get next line to read from file and load it to list.
  * 4. Close file.
  * IMPORTANT : if open file fails, or GNL files, reutrn will be NULL.
- * Shutdown will be executed in main program. */
+ * Shutdown will be executed in main program.
+ * IMPORTANT2 : after reading the file, gen next line is exxecuted one last time
+ * and gives the zero value. that execution allocates memory for line, therfore
+ * line must be freed after loop in order to prevent a mem-leak. */
 t_list	*read_map(void)
 {
 	t_list	*list_map;
-	t_list	*list_new;
 	char	*line;
 	int		fd;
 	int		gnl;
 
-	gnl = 0;
-	list_new = NULL;
 	list_map = NULL;
 	line = NULL;
 	fd = open(PATH_MAP, O_RDONLY);
 	if (fd == -1)
 		return (NULL);
-		//ft_fullshutdown(); //DUDA.
 	gnl = get_next_line(fd, &line);
 	while (gnl > 0)
 	{
-		list_new = ft_lstnew(line);
-		if (!list_new)
-			return (NULL);
-		ft_lstadd_back(&list_map, list_new);
+		ft_lstadd_back(&list_map, ft_lstnew(line));
 		gnl = get_next_line(fd, &line);
 	}
+	free(line);
 	if (gnl == -1)
 	{
-		while (list_map)
-		{
+		if (list_map)
 			ft_fullclear(list_map);
-			return (NULL);
-		}
+		return (NULL);
 	}
 	close(fd);
 	return (list_map);

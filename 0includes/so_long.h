@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 10:23:14 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 10:44:56 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 /* ERROR MESSAGES */
 # define EX		"Error.\n"
 # define EX1	"No memory available for allocation.\n"
+# define EX11	"No memory available for image allocation.\n"
 # define EX2	"Reading file was unsuccessful. File must have content. \n"
 # define EX3	"Could not generate new window.\n"
 /* WINDOW NAME */
@@ -47,6 +48,7 @@
 # define RIGHT 124
 # define UP 125
 # define DOWN 126
+# define ESCAPE 53
 # define CHARACTER 'P'
 
 /** PURPOSE : struct of a vector, 2D representation. */
@@ -90,14 +92,12 @@ typedef struct	s_program
 	t_imagedb	*db;
 }				t_program;
 
-
 /* MAP PARSER */
 t_vector	get_dimensions(t_list *list_map);
 char		**fix_map(t_list *list_map, t_vector dimensions);
 t_list		*read_map(void);
 /* STRUCT INIT */
 void		init_game(t_program *game);
-/* WINDOW CONTROL INIT AND HOOKS */
 void		init_window(t_program *game, t_vector window_dimensions);
 /* WINDOW SIZE */
 t_vector	get_window_dimensions(t_vector dimensions);

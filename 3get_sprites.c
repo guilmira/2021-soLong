@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 10:30:47 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/05 10:40:38 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 10:57:06 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,13 @@ t_data	*ft_newsprite(t_program *game, char *path)
 
 	new_image = ft_calloc(1, sizeof(*new_image));
 	if (!new_image)
-		ft_shutdown();
+		full_shutdown(game, EX11);
 	load_image_n_getdata(game, new_image, path);
 	return (new_image);
-	//free(new_image);
 }
 
-void	animation_init(t_program *game)
-{
-	game->character_coords = element_position(game->map2D, game->array_dimensions, CHARACTER);
-	game->db->sprite1 = ft_newsprite(game, PATH_CHARACTER);
-	game->db->sprite2 = ft_newsprite(game, PATH_CHARACTER2);
-	game->db->sprite3 = ft_newsprite(game, PATH_CHARACTER3);
-	game->db->sprite4 = ft_newsprite(game, PATH_CHARACTER4);
-}
-
+/** PURPOSE : Obtain array-map coordinates of given element "z";
+ * 1. Search array for argument character 'z'. */
 t_vector	element_position(char **map, t_vector array_dimensions, char z)
 {
 	int			i;
@@ -70,4 +62,14 @@ t_vector	element_position(char **map, t_vector array_dimensions, char z)
 		j = -1;
 	}
 	return (element);
+}
+
+/** PURPOSE : Loads every animation of main sprite. */
+void	animation_init(t_program *game)
+{
+	game->character_coords = element_position(game->map2D, game->array_dimensions, CHARACTER);
+	game->db->sprite1 = ft_newsprite(game, PATH_CHARACTER);
+	game->db->sprite2 = ft_newsprite(game, PATH_CHARACTER2);
+	game->db->sprite3 = ft_newsprite(game, PATH_CHARACTER3);
+	game->db->sprite4 = ft_newsprite(game, PATH_CHARACTER4);
 }

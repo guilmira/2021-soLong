@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 10:40:52 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 10:29:46 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 11:03:28 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,34 @@ static void	clean_memory(t_program *game)
 	free(game);
 }
 
+/** PURPOSE : Destroy and free memory allocated for imgs. */
+static void	clean_images(t_program *game)
+{
+	//HAY QUE METER IF DE SI EXISTEN, PORQUE CON E SHUTDOWN, PUEDE CORTAR A MEDIAS
+	//DEBERIAS HACERTE UNA LISTA PARA DATABASE. Y OTRA LISTA PARA ESTATICOS.
+	mlx_destroy_image(game->mlx_pointer, game->db->sprite1->img);
+	mlx_destroy_image(game->mlx_pointer, game->db->sprite2->img);
+	mlx_destroy_image(game->mlx_pointer, game->db->sprite3->img);
+	mlx_destroy_image(game->mlx_pointer, game->db->sprite4->img);
+	mlx_destroy_image(game->mlx_pointer, game->floor->img);
+	mlx_destroy_image(game->mlx_pointer, game->wall->img);
+	//mlx_destroy_image(game->mlx_pointer, game->collectible->img);
+	free(game->db->sprite1);
+	free(game->db->sprite2);
+	free(game->db->sprite3);
+	free(game->db->sprite4);
+	free(game->floor);
+	free(game->wall);
+	//free(game->collectible);
+}
+
 /** PURPOSE : shutdown program meanwhile freeing heap allocated memory.
  * 1. Close window if exists.
  * 2. Clean memory for all structs allocated.
  * 3. Print error message and exit program. */
 void	full_shutdown(t_program *game, char *string)
 {
+	//clean_images(game); no lo pongas hasta quue no tnegas listas e ifs.
 	if (game->window)
 		mlx_destroy_window(game->mlx_pointer, game->window);
 	clean_memory(game);
@@ -61,6 +83,7 @@ void	full_shutdown(t_program *game, char *string)
  * 3. Exit program without output message. */
 void	clean_exit(t_program *game)
 {
+	clean_images(game);
 	if (game->window)
 		mlx_destroy_window(game->mlx_pointer, game->window);
 	clean_memory(game);
