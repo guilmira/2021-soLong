@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 13:49:51 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 15:02:16 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,19 @@
 /* ANIMATION SETTINGS */
 # define ANIMATION_FRAME 1700
 # define FACTOR_SPRITE 0.25
-/* PATH TO IMAGES */
+/* NUMBER OF IMAGES WITHOUT MOVEMENT */
+# define NUMBER_IMAGES 4
+# define NUMBER_ANIMATIONS 4
+/* PATH TO ANIMATIONS */
 # define PATH_CHARACTER1 "./0images/0witch/1.xpm"
 # define PATH_CHARACTER2 "./0images/0witch/2.xpm"
 # define PATH_CHARACTER3 "./0images/0witch/3.xpm"
 # define PATH_CHARACTER4 "./0images/0witch/4.xpm"
+/* PATH TO IMAGES */
 # define PATH_BACKGROUND "./0images/grass.xpm"
 # define PATH_WALL "./0images/wall.xpm"
+# define PATH_COLLECTABLE "./0images/potion.xpm"
+# define PATH_EXIT "./0images/red_potion.xpm"
 /* ERROR MESSAGES */
 # define EX		"Error.\n"
 # define EX1	"No memory available for allocation.\n"
@@ -50,9 +56,9 @@
 # define DOWN 126
 # define ESCAPE 53
 # define CHARACTER 'P'
-/* NUMBER OF IMAGES WITHOUT MOVEMENT */
-# define NUMBER_IMAGES 2
-# define NUMBER_ANIMATIONS 4
+# define WALL '1'
+# define COLLECTABLE 'C'
+
 
 /** PURPOSE : struct of a vector, 2D representation. */
 typedef struct s_vector
@@ -61,7 +67,8 @@ typedef struct s_vector
 	int	y;
 }		t_vector;
 
-/** PURPOSE : struct that stores image data. */
+/** PURPOSE : struct that stores image data. Coordinates is
+ * necessary when working with sprites. */
 typedef struct	s_data
 {
 	void		*img;
@@ -104,7 +111,7 @@ t_data	**load_images(t_program *game);
 t_data	**load_animations(t_program *game);
 t_vector	element_position(char **map, t_vector array_dimensions, char z);
 /* PUT BACKGROUND */
-void		put_floor_and_walls(t_program *game);
+void		put_layers(t_program *game);
 /* LOOP SPRITE MOVEMENT */
 void		put_sprite(t_program *game, t_vector coords);
 void	wash_floor(t_program *game, t_vector coords);

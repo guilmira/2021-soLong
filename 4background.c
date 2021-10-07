@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 12:53:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 13:14:45 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 14:46:55 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,19 +39,21 @@ static void	put_background(t_program *game, t_vector dimensions, t_data *floor)
 }
 
 /** PURPOSE : Lay wall layer by iterating through loop. */
-static void	put_walls(t_program *game, char **map, \
-			t_vector dimensions, t_data *wall)
+static void	put_item(t_program *game, char **map, \
+			char item, t_data *wall)
 {
 	int	i;
 	int	j;
+	t_vector	dimensions;
 
+	dimensions = game->array_dimensions;
 	i = -1;
 	j = -1;
 	while (++i < dimensions.y)
 	{
 		while (++j < dimensions.x)
 		{
-			if ((char) map[i][j] == '1')
+			if ((char) map[i][j] == item)
 			{
 				wall->coords.x = j * UNIT_HEIGHT;
 				wall->coords.y = i * UNIT_WIDTH;
@@ -63,12 +65,14 @@ static void	put_walls(t_program *game, char **map, \
 }
 
 /** PURPOSE : Lay 2 layers, the background and the walls. */
-void	put_floor_and_walls(t_program *game)
+void	put_layers(t_program *game)
 {
 	t_data *image;
 
 	image = game->static_images[0];
 	put_background(game, game->array_dimensions, image);
 	image = game->static_images[1];
-	put_walls(game, game->map2D, game->array_dimensions, image);
+	put_item(game, game->map2D, WALL, image);
+	image = game->static_images[2];
+	put_item(game, game->map2D, COLLECTABLE, image);
 }

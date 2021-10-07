@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 10:30:47 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 14:02:47 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 14:40:52 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,8 @@ t_data	**load_images(t_program *game)
 		return (NULL);
 	static_images[0] = ft_newsprite(game, PATH_BACKGROUND);
 	static_images[1] = ft_newsprite(game, PATH_WALL);
-	static_images[2] = NULL;
-	//static_images[2] = ft_newsprite(game, PATH_COLLECT);
-	//static_images[3] = NULL;
+	static_images[2] = ft_newsprite(game, PATH_COLLECTABLE);
+	static_images[3] = NULL;
 	return (static_images);
 }
 
