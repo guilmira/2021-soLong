@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 15:59:31 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 13:07:53 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 13:28:13 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ void	put_sprite(t_program *game, t_vector coords)
 	|| frame == ANIMATION_FRAME * 3 || frame >= ANIMATION_FRAME * 4)
 		wash_floor(game, coords);
 	if (frame == ANIMATION_FRAME)
-		push_image_towindow(game, game->db->sprite1, position);
+		push_image_towindow(game, game->animations[0], position);
 	else if (frame == ANIMATION_FRAME * 2)
-		push_image_towindow(game, game->db->sprite2, position);
+		push_image_towindow(game, game->animations[1], position);
 	else if (frame == ANIMATION_FRAME * 3)
-		push_image_towindow(game, game->db->sprite3, position);
+		push_image_towindow(game, game->animations[2], position);
 	else if (frame >= ANIMATION_FRAME * 4 || !frame)
 	{
-		push_image_towindow(game, game->db->sprite4, position);
+		push_image_towindow(game, game->animations[3], position);
 		frame = 0;
 	}
 	frame++;

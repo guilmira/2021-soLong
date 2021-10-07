@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 13:16:49 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 13:24:28 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define ANIMATION_FRAME 2000
 # define FACTOR_SPRITE 0.25
 /* PATH TO IMAGES */
-# define PATH_CHARACTER "./0images/0witch/1.xpm"
+# define PATH_CHARACTER1 "./0images/0witch/1.xpm"
 # define PATH_CHARACTER2 "./0images/0witch/2.xpm"
 # define PATH_CHARACTER3 "./0images/0witch/3.xpm"
 # define PATH_CHARACTER4 "./0images/0witch/4.xpm"
@@ -52,6 +52,7 @@
 # define CHARACTER 'P'
 /* NUMBER OF IMAGES WITHOUT MOVEMENT */
 # define NUMBER_IMAGES 2
+# define NUMBER_ANIMATIONS 4
 
 /** PURPOSE : struct of a vector, 2D representation. */
 typedef struct s_vector
@@ -71,13 +72,13 @@ typedef struct	s_data
 	int			endian;
 }				t_data;
 
-typedef struct s_databaseimages
+/* typedef struct s_databaseimages
 {
 	t_data		*sprite1;
 	t_data		*sprite2;
 	t_data		*sprite3;
 	t_data		*sprite4;
-}				t_imagedb;
+}				t_imagedb; */
 
 /** PURPOSE : struct that stores pointers of the mxl init and
  * the window init. Both pointers will be constantly refered to */
@@ -89,7 +90,8 @@ typedef struct	s_program
 	t_vector	character_coords;
 	char		**map2D;
 	t_data		**static_images;
-	t_imagedb	*db;
+	t_data		**animations;
+	//t_imagedb	*db;
 }				t_program;
 
 /* MAP PARSER */

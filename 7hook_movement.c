@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:07:03 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 10:31:33 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 13:27:35 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	put_sprite_dir(t_program *game, t_vector coords)
 	//position.x = UNIT_WIDTH * coords.x;
 	position.x = UNIT_WIDTH * coords.x + (UNIT_WIDTH * FACTOR_SPRITE);
 	position.y = UNIT_HEIGHT * coords.y;
-	push_image_towindow(game, game->db->sprite4, position);
+	push_image_towindow(game, game->animations[3], position);
 }
 
 /** PURPOSE : execute sprite movement by washing previous background

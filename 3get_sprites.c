@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 10:30:47 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 10:57:06 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 13:28:58 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ t_vector	element_position(char **map, t_vector array_dimensions, char z)
 }
 
 /** PURPOSE : Loads every animation of main sprite. */
-void	animation_init(t_program *game)
+/* void	animation_init(t_program *game)
 {
 	game->character_coords = element_position(game->map2D, game->array_dimensions, CHARACTER);
 	game->db->sprite1 = ft_newsprite(game, PATH_CHARACTER);
 	game->db->sprite2 = ft_newsprite(game, PATH_CHARACTER2);
 	game->db->sprite3 = ft_newsprite(game, PATH_CHARACTER3);
 	game->db->sprite4 = ft_newsprite(game, PATH_CHARACTER4);
-}
+} */

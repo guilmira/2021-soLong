@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 10:40:52 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 13:16:21 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 13:36:02 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static void	clean_memory(t_program *game)
 {
 	if (game->map2D)
 		free_map(game);
-	if (game->db)
-		free(game->db);
+	/* if (game->db)
+		free(game->db); */
 	free(game);
 }
 
@@ -58,19 +58,14 @@ static void	clear_images(t_program *game)
 		free(image);
 	}
 	free(game->static_images);
-
-
-
-	mlx_destroy_image(game->mlx_pointer, game->db->sprite1->img);
-	mlx_destroy_image(game->mlx_pointer, game->db->sprite2->img);
-	mlx_destroy_image(game->mlx_pointer, game->db->sprite3->img);
-	mlx_destroy_image(game->mlx_pointer, game->db->sprite4->img);
-
-
-	free(game->db->sprite1);
-	free(game->db->sprite2);
-	free(game->db->sprite3);
-	free(game->db->sprite4);
+	i = -1;
+	while (++i < NUMBER_ANIMATIONS)
+	{
+		image = game->animations[i];
+		mlx_destroy_image(game->mlx_pointer, image->img);
+		free(image);
+	}
+	free(game->animations);
 }
 
 /** PURPOSE : shutdown program meanwhile freeing heap allocated memory.

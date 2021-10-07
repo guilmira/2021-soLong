@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:20:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 13:06:22 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 13:33:49 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,27 @@ t_data	**load_images(t_program *game)
 	return (static_images);
 }
 
+
+t_data	**load_animations(t_program *game)
+{
+	t_data	**animations;
+	int		i;
+
+	i = -1;
+
+	animations = ft_calloc(NUMBER_ANIMATIONS + 1, sizeof(t_data **));
+	if (!animations)
+		return (NULL);
+	//char z = string[x]; z++;
+	animations[0] = ft_newsprite(game, PATH_CHARACTER1);
+	animations[1] = ft_newsprite(game, PATH_CHARACTER2);
+	animations[2] = ft_newsprite(game, PATH_CHARACTER3);
+	animations[3] = ft_newsprite(game, PATH_CHARACTER4);
+	animations[4] = NULL;
+	return (animations);
+}
+
+
 /** PURPOSE : init 42minilibx, open window, and load an image.
  * 1. Define structure game (contains the lib and the window) and image.
  * 2. Define structure image (contains address of the image and parameters).
@@ -60,9 +81,12 @@ int main(void)
 	if (!(game->map2D))
 		full_shutdown(game, EX2);
 	init_window(game, get_window_dimensions(game->array_dimensions));
+	//animation_init(game); poner a null
+	//static_inti
 	game->static_images = load_images(game);
+	game->character_coords = element_position(game->map2D, game->array_dimensions, CHARACTER);
+	game->animations = load_animations(game);
 	put_floor_and_walls(game);
-	animation_init(game);
 	mlx_key_hook(game->window, movement_character, game);
 	mlx_loop_hook(game->mlx_pointer, next_frame, game);
 	mlx_loop(game->mlx_pointer);
