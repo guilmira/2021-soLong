@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:20:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 12:05:09 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 13:06:22 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,24 @@
 void	leaks(void)
 {
 	system("leaks so_long");
+}
+
+t_data	**load_images(t_program *game)
+{
+	t_data	**static_images;
+	int		i;
+
+	i = -1;
+
+	static_images = ft_calloc(NUMBER_IMAGES + 1, sizeof(t_data **));
+	if (!static_images)
+		return (NULL);
+
+	static_images[0] = ft_newsprite(game, PATH_BACKGROUND);
+	static_images[1] = ft_newsprite(game, PATH_WALL);
+	//static_images[2] = ft_newsprite(game, PATH_COLLECT);
+	static_images[3] = NULL;
+	return (static_images);
 }
 
 /** PURPOSE : init 42minilibx, open window, and load an image.
@@ -33,7 +51,6 @@ int main(void)
 		ft_shutdown();
 	init_game(game);
 	list_map = read_map();
-	//system("leaks so_long");
 	//list_map = NULL;
 	if (!list_map)
 		full_shutdown(game, EX2);
@@ -43,6 +60,7 @@ int main(void)
 	if (!(game->map2D))
 		full_shutdown(game, EX2);
 	init_window(game, get_window_dimensions(game->array_dimensions));
+	game->static_images = load_images(game);
 	put_floor_and_walls(game);
 	animation_init(game);
 	mlx_key_hook(game->window, movement_character, game);

@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 09:19:00 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/06 14:16:41 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 13:17:01 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	init_game(t_program *game)
 	game->character_coords.x = 0;
 	game->character_coords.y = 0;
 	game->map2D = NULL;
-	game->floor = NULL;
-	game->wall = NULL;
-	game->collectible = NULL;
+
+
+	game->static_images = NULL;
 	game->db = NULL;
 	//game->db = ft_calloc(1, sizeof(game->db)); EL QUE DA SEG FAULT
 	game->db = ft_calloc(1, sizeof(t_imagedb));

@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 10:40:52 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 11:03:28 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 13:16:21 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,35 @@ static void	clean_memory(t_program *game)
 }
 
 /** PURPOSE : Destroy and free memory allocated for imgs. */
-static void	clean_images(t_program *game)
+static void	clear_images(t_program *game)
 {
 	//HAY QUE METER IF DE SI EXISTEN, PORQUE CON E SHUTDOWN, PUEDE CORTAR A MEDIAS
 	//DEBERIAS HACERTE UNA LISTA PARA DATABASE. Y OTRA LISTA PARA ESTATICOS.
+
+	t_data		*image;
+	int			i;
+
+	i = -1;
+	while (++i < NUMBER_IMAGES)
+	{
+		image = game->static_images[i];
+		mlx_destroy_image(game->mlx_pointer, image->img);
+		free(image);
+	}
+	free(game->static_images);
+
+
+
 	mlx_destroy_image(game->mlx_pointer, game->db->sprite1->img);
 	mlx_destroy_image(game->mlx_pointer, game->db->sprite2->img);
 	mlx_destroy_image(game->mlx_pointer, game->db->sprite3->img);
 	mlx_destroy_image(game->mlx_pointer, game->db->sprite4->img);
-	mlx_destroy_image(game->mlx_pointer, game->floor->img);
-	mlx_destroy_image(game->mlx_pointer, game->wall->img);
-	//mlx_destroy_image(game->mlx_pointer, game->collectible->img);
+
+
 	free(game->db->sprite1);
 	free(game->db->sprite2);
 	free(game->db->sprite3);
 	free(game->db->sprite4);
-	free(game->floor);
-	free(game->wall);
-	//free(game->collectible);
 }
 
 /** PURPOSE : shutdown program meanwhile freeing heap allocated memory.
@@ -83,7 +94,7 @@ void	full_shutdown(t_program *game, char *string)
  * 3. Exit program without output message. */
 void	clean_exit(t_program *game)
 {
-	clean_images(game);
+	clear_images(game);
 	if (game->window)
 		mlx_destroy_window(game->mlx_pointer, game->window);
 	clean_memory(game);

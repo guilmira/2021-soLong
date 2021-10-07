@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 12:53:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 10:56:50 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 13:14:45 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ static void	put_walls(t_program *game, char **map, \
 /** PURPOSE : Lay 2 layers, the background and the walls. */
 void	put_floor_and_walls(t_program *game)
 {
-	game->floor = ft_newsprite(game, PATH_BACKGROUND);
-	put_background(game, game->array_dimensions, game->floor);
-	game->wall = ft_newsprite(game, PATH_WALL);
-	put_walls(game, game->map2D, game->array_dimensions, game->wall);
+	t_data *image;
+
+	image = game->static_images[0];
+	put_background(game, game->array_dimensions, image);
+	image = game->static_images[1];
+	put_walls(game, game->map2D, game->array_dimensions, image);
 }

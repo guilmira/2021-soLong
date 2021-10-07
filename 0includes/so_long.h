@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 10:44:56 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 13:16:49 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@
 # define DOWN 126
 # define ESCAPE 53
 # define CHARACTER 'P'
+/* NUMBER OF IMAGES WITHOUT MOVEMENT */
+# define NUMBER_IMAGES 2
 
 /** PURPOSE : struct of a vector, 2D representation. */
 typedef struct s_vector
@@ -86,9 +88,7 @@ typedef struct	s_program
 	t_vector	array_dimensions;
 	t_vector	character_coords;
 	char		**map2D;
-	t_data		*floor;
-	t_data		*wall;
-	t_data		*collectible;
+	t_data		**static_images;
 	t_imagedb	*db;
 }				t_program;
 
