@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/06 10:27:21 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 10:16:53 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,16 @@
 # define DOWN 126
 # define CHARACTER 'P'
 
-
-
-# define PATH_MAP "./0images/map2.ber"
-# define PATH_CHARACTER "./0images/1.xpm"
-# define PATH_CHARACTER2 "./0images/2.xpm"
-# define PATH_CHARACTER3 "./0images/3.xpm"
-# define PATH_CHARACTER4 "./0images/4.xpm"
+/* PATH TO MAP */
+# define PATH_MAP "./1maps/map2.ber"
+/* PATH TO IMAGES */
+# define PATH_CHARACTER "./0images/0witch/1.xpm"
+# define PATH_CHARACTER2 "./0images/0witch/2.xpm"
+# define PATH_CHARACTER3 "./0images/0witch/3.xpm"
+# define PATH_CHARACTER4 "./0images/0witch/4.xpm"
 # define PATH_BACKGROUND "./0images/grass.xpm"
 # define PATH_WALL "./0images/wall.xpm"
-
-
+/* ERROR MESSAGES */
 # define EX		"Error.\n"
 # define EX1	"No memory available for allocation.\n"
 # define EX2	"Reading file was unsuccessful. File must have content. \n"
@@ -117,7 +116,7 @@ void		put_sprite(t_program *game, t_vector coords);
 void	wash_floor(t_program *game, t_vector coords);
 int			next_frame(t_program *game);
 /* CLEAR MEMORY */
-void		clean_memory(t_program *game);
+void		clean_exit(t_program *game);
 void		full_shutdown(t_program *game, char *string);
 /* CHARACTER MOVEMENT */
 t_bool	allow_movement(char **map2D, t_vector position, int key);

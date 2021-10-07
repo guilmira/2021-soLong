@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 10:03:52 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 09:39:09 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 09:54:48 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 /** PURPOSE : closes program with output signal. */
 static int	ft_exit(t_program *game)
 {
-	clean_memory(game);
+	clean_exit(game);
 	exit(0);
 }
 
@@ -25,10 +25,7 @@ static int	ft_exit(t_program *game)
 static int	ft_esc_exit(int keycode, t_program *game)
 {
 	if (keycode == 53)
-	{
-		clean_memory(game);
-		exit(0);
-	}
+		clean_exit(game);
 	return (0);
 }
 

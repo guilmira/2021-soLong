@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 10:40:52 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 09:29:17 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 10:12:47 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,35 @@ static void free_map(t_program *game)
  * 1. Free map 2D.
  * 2. Free database if it was allocated.
  * 3. Free game struct if previously allocated. */
-void	clean_memory(t_program *game)
+static void	clean_memory(t_program *game)
 {
 	if (game->map2D)
 		free_map(game);
 	if (game->db)
-		free(game);
-
+		free(game->db);
+	free(game);
 }
 
 /** PURPOSE : shutdown program meanwhile freeing heap allocated memory.
- * 1. Clean memory for all structs allocated.
- * 2. Print error message and exit program. */
+ * 1. Close window if exists.
+ * 2. Clean memory for all structs allocated.
+ * 3. Print error message and exit program. */
 void	full_shutdown(t_program *game, char *string)
 {
+	if (game->window)
+		mlx_destroy_window(game->mlx_pointer, game->window);
 	clean_memory(game);
-	if (game)
-		free(game);
 	ft_putstr_fd(EX, 1);
 	ft_putstr_fd(string, 1);
 	ft_shutdown();
-	game = (void *) game;
+}
+
+/** PURPOSE : Neat program exit.
+ * 1. Clean memory for all structs allocated.
+ * 2. Exit program without output message. */
+void	clean_exit(t_program *game)
+{
+	mlx_destroy_window(game->mlx_pointer, game->window);
+	clean_memory(game);
+	exit(0);
 }

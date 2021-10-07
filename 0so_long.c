@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:20:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 09:25:08 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/07 10:12:08 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int main(void)
 		ft_shutdown();
 	init_game(game);
 	list_map = read_map();
+	//list_map = NULL;
 	if (!list_map)
 		full_shutdown(game, EX2);
 	game->array_dimensions = get_dimensions(list_map);
