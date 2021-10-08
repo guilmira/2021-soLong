@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:07:03 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 13:27:35 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:18:28 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void	put_sprite_dir(t_program *game, t_vector coords)
 {
 	t_vector	position;
 
-	//position.x = UNIT_WIDTH * coords.x;
 	position.x = UNIT_WIDTH * coords.x + (UNIT_WIDTH * FACTOR_SPRITE);
 	position.y = UNIT_HEIGHT * coords.y;
 	push_image_towindow(game, game->animations[3], position);
@@ -28,7 +27,12 @@ static void	put_sprite_dir(t_program *game, t_vector coords)
 static void	execute_movement(t_program *game, t_vector position, int key)
 {
 	t_vector	offset;
+	static int	movement_number;
 
+	movement_number++;
+	ft_putstr_fd("Total movements: ", 1);
+	ft_putnbr_fd(movement_number, 1);
+	ft_putstr_fd("\n", 1);
 	offset.x = 0;
 	offset.y = 0;
 	wash_floor(game, position);
@@ -37,14 +41,13 @@ static void	execute_movement(t_program *game, t_vector position, int key)
 	else if (key == RIGHT)
 		offset.x++;
 	else if (key == UP)
-		offset.y++;
-	else if (key == DOWN)
 		offset.y--;
+	else if (key == DOWN)
+		offset.y++;
 	game->character_coords.y = position.y + offset.y;
 	game->character_coords.x = position.x + offset.x;
 	put_sprite_dir(game, game->character_coords);
 }
-
 
 /** PURPOSE : Separate movements and manage esc key.
  * 123 <<			124 >>

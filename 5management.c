@@ -6,14 +6,14 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 10:40:52 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/08 09:31:58 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:17:38 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 /** PURPOSE : free 2D array located within in game structure. */
-static void free_map(t_program *game)
+static void	free_map(t_program *game)
 {
 	int	i;
 

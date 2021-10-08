@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/08 11:40:38 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:32:19 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "libft.h"
 # include <fcntl.h>
 /* PATH TO MAP */
-# define PATH_MAP "./1maps/map3.ber"
+# define PATH_MAP "./1maps/map.ber"
 /* ANIMATION SETTINGS */
 # define ANIMATION_FRAME 1700
 # define FACTOR_SPRITE 0.25
@@ -55,10 +55,10 @@ and one character 'P'. \n"
 # define UNIT_HEIGHT 70
 # define UNIT_WIDTH 70
 /* MOUSE KEYS AND MAP CHARACTERS */
-# define LEFT 123
-# define RIGHT 124
-# define UP 125
-# define DOWN 126
+# define LEFT 0
+# define DOWN 1
+# define RIGHT 2
+# define UP 13
 # define ESCAPE 53
 # define CHARACTER 'P'
 # define WALL '1'

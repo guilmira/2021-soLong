@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:20:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/08 11:39:47 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:15:54 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static void	hooks_and_loops(t_program *game)
  * 1. Define structure game (contains the lib and the window) and image.
  * 2. Define structure image (contains address of the image and parameters).
  * 3. Initialize both structures. */
-int main(void)
+int	main(void)
 {
 	t_program	*game;
 
@@ -84,13 +84,8 @@ int main(void)
 	hooks_and_loops(game);
 	return (0);
 }
-
-//El mapa deberá estar cerrado/rodeado de muros, en caso contrario el programa deberá devolver un error.
-//mapa no vacio
-//mapa no muy grnade
-//mapa no regular rectangulo.
-//El mapa debe tener al menos una salida, un coleccionable y una posición inicial.
 //Un contador de movimiento directamente mostrado en pantalla en lugar de en el terminal.
 //mostrar nombre de Morgana con letras chulas y movimientos para el bonus .
 
-
+/* if (!game->window) //might need to free window later on. check manual..
+		full_shutdown(game, EX3); */

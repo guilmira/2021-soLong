@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:09:13 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/05 12:10:06 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:09:06 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static t_vector	wall_position(t_vector element, int key)
 	else if (key == RIGHT)
 		wall.x = element.x + 1;
 	else if (key == UP)
-		wall.y = element.y + 1;
-	else if (key == DOWN)
 		wall.y = element.y - 1;
+	else if (key == DOWN)
+		wall.y = element.y + 1;
 	return (wall);
 }
 

@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 14:20:31 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/08 11:42:31 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:13:59 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ t_vector	get_dimensions(t_list *list_map)
 
 	dimensions.y = ft_lstsize(list_map);
 	dimensions.x = ft_strlen(list_map->content);
-
 	return (dimensions);
 }
 
@@ -70,14 +69,13 @@ int	parser_map(char **map, t_vector dimensions)
 
 	i = -1;
 	j = -1;
-	printf("%i\n", dimensions.y);
 	if (dimensions.y > MAX_HEIGHT || dimensions.x > MAX_WIDTH)
 		return (6);
 	if (dimensions.y == 0 || dimensions.x == 0)
 		return (6);
 	while (++i < dimensions.y)
 	{
-		if ((int) ft_strlen(map[i]) !=  dimensions.x)
+		if ((int) ft_strlen(map[i]) != dimensions.x)
 			return (5);
 		while (++j < dimensions.x)
 		{

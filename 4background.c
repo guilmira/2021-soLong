@@ -6,13 +6,11 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 12:53:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 14:46:55 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:17:20 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-//PENDIENTE!!: revisar que en una usas la estructura y en otra no. es encesario coords en estructura??
 
 /** PURPOSE : Lay background layer by iterating through loop. */
 static void	put_background(t_program *game, t_vector dimensions, t_data *floor)
@@ -38,12 +36,12 @@ static void	put_background(t_program *game, t_vector dimensions, t_data *floor)
 	}
 }
 
-/** PURPOSE : Lay wall layer by iterating through loop. */
+/** PURPOSE : Lay item layer by iterating through loop. */
 static void	put_item(t_program *game, char **map, \
 			char item, t_data *wall)
 {
-	int	i;
-	int	j;
+	int			i;
+	int			j;
 	t_vector	dimensions;
 
 	dimensions = game->array_dimensions;
@@ -67,7 +65,7 @@ static void	put_item(t_program *game, char **map, \
 /** PURPOSE : Lay 2 layers, the background and the walls. */
 void	put_layers(t_program *game)
 {
-	t_data *image;
+	t_data	*image;
 
 	image = game->static_images[0];
 	put_background(game, game->array_dimensions, image);

@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 10:30:47 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 14:40:52 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/08 12:16:25 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ t_data	**load_images(t_program *game)
 	int		i;
 
 	i = -1;
-
 	static_images = ft_calloc(NUMBER_IMAGES + 1, sizeof(t_data **));
 	if (!static_images)
 		return (NULL);
