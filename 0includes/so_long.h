@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 15:02:16 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/08 11:40:38 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "libft.h"
 # include <fcntl.h>
 /* PATH TO MAP */
-# define PATH_MAP "./1maps/map2.ber"
+# define PATH_MAP "./1maps/map3.ber"
 /* ANIMATION SETTINGS */
 # define ANIMATION_FRAME 1700
 # define FACTOR_SPRITE 0.25
@@ -41,10 +41,15 @@
 # define EX11	"No memory available for image allocation.\n"
 # define EX2	"Reading file was unsuccessful. File must have content. \n"
 # define EX3	"Could not generate new window.\n"
+# define EX4	"Map specifications not met. It must be surrounded by walls '1' \
+and it must have at least one exit 'E', one collectable 'C' \
+and one character 'P'. \n"
+# define EX5	"Incorrect shape of map, it must be a rectangle. \n"
+# define EX6	"Rows and lines may not be empty and must not bigger than 36 and 19.\n"
 /* WINDOW NAME */
 # define WINDOW_NAME "Retro Aquelarre"
 /* MAXIMUN WINDOW SIZE ALOWED - Mac Screen: 2560 x 1440 */
-# define MAX_HEIGHT 1
+# define MAX_HEIGHT 19
 # define MAX_WIDTH 36
 /* TILE DIMENSIONS */
 # define UNIT_HEIGHT 70
@@ -58,6 +63,7 @@
 # define CHARACTER 'P'
 # define WALL '1'
 # define COLLECTABLE 'C'
+# define EXIT 'E'
 
 
 /** PURPOSE : struct of a vector, 2D representation. */
@@ -96,6 +102,7 @@ typedef struct	s_program
 t_vector	get_dimensions(t_list *list_map);
 char		**fix_map(t_list *list_map, t_vector dimensions);
 t_list		*read_map(void);
+int	parser_map(char **map, t_vector dimensions);
 /* STRUCT INIT */
 void		init_game(t_program *game);
 void		init_window(t_program *game, t_vector window_dimensions);
