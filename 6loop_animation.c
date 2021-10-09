@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 15:59:31 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/07 13:28:13 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/09 12:24:32 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	wash_floor(t_program *game, t_vector coords)
 }
 
 /** PURPOSE : Give moevement to the sprite. */
-void	put_sprite(t_program *game, t_vector coords)
+void	put_sprite(t_program *game, t_vector coords, t_data **animations)
 {
 	static int	frame;
 	t_vector	position;
@@ -33,14 +33,39 @@ void	put_sprite(t_program *game, t_vector coords)
 	|| frame == ANIMATION_FRAME * 3 || frame >= ANIMATION_FRAME * 4)
 		wash_floor(game, coords);
 	if (frame == ANIMATION_FRAME)
-		push_image_towindow(game, game->animations[0], position);
+		push_image_towindow(game, animations[0], position);
 	else if (frame == ANIMATION_FRAME * 2)
-		push_image_towindow(game, game->animations[1], position);
+		push_image_towindow(game, animations[1], position);
 	else if (frame == ANIMATION_FRAME * 3)
-		push_image_towindow(game, game->animations[2], position);
+		push_image_towindow(game, animations[2], position);
 	else if (frame >= ANIMATION_FRAME * 4 || !frame)
 	{
-		push_image_towindow(game, game->animations[3], position);
+		push_image_towindow(game, animations[3], position);
+		frame = 0;
+	}
+	frame++;
+}
+
+/** PURPOSE : Give moevement to the sprite. */
+static void	put_sprite2(t_program *game, t_vector coords, t_data **animations)
+{
+	static int	frame;
+	t_vector	position;
+
+	position.x = UNIT_WIDTH * coords.x;
+	position.y = UNIT_HEIGHT * coords.y + (FACTOR_CAULDRON * 0.1);
+	if (frame == ANIMATION_FRAME2 || frame == ANIMATION_FRAME2 * 2 \
+	|| frame == ANIMATION_FRAME2 * 3 || frame >= ANIMATION_FRAME2 * 4)
+		wash_floor(game, coords);
+	if (frame == ANIMATION_FRAME2)
+		push_image_towindow(game, animations[0], position);
+	else if (frame == ANIMATION_FRAME2 * 2)
+		push_image_towindow(game, animations[1], position);
+	else if (frame == ANIMATION_FRAME2 * 3)
+		push_image_towindow(game, animations[2], position);
+	else if (frame >= ANIMATION_FRAME2 * 4 || !frame)
+	{
+		push_image_towindow(game, animations[3], position);
 		frame = 0;
 	}
 	frame++;
@@ -49,6 +74,7 @@ void	put_sprite(t_program *game, t_vector coords)
 /** PURPOSE : Hook loop function. */
 int	next_frame(t_program *game)
 {
-	put_sprite(game, game->character_coords);
+	put_sprite(game, game->character_coords, game->animations);
+	put_sprite2(game, game->exit_coords, game->animations_exit);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 10:30:47 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/08 12:16:25 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/09 13:23:47 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,24 @@ t_data	**load_animations(t_program *game)
 	animations[1] = ft_newsprite(game, PATH_CHARACTER2);
 	animations[2] = ft_newsprite(game, PATH_CHARACTER3);
 	animations[3] = ft_newsprite(game, PATH_CHARACTER4);
+	animations[4] = NULL;
+	return (animations);
+}
+
+/** PURPOSE : Load animations by searching path. */
+t_data	**load_animations2(t_program *game)
+{
+	t_data	**animations;
+	int		i;
+
+	i = -1;
+	animations = ft_calloc(NUMBER_ANIMATIONS1 + 1, sizeof(t_data **));
+	if (!animations)
+		return (NULL);
+	animations[0] = ft_newsprite(game, PATH_C1);
+	animations[1] = ft_newsprite(game, PATH_C2);
+	animations[2] = ft_newsprite(game, PATH_C3);
+	animations[3] = ft_newsprite(game, PATH_C4);
 	animations[4] = NULL;
 	return (animations);
 }

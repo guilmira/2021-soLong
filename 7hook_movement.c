@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:07:03 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/08 12:18:28 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/09 12:49:18 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ int	movement_character(int key, t_program *game)
 	t_vector	position;
 
 	position = game->character_coords;
-	if (key == LEFT && allow_movement(game->map2D, position, LEFT))
+	if (key == LEFT && allow_movement(game, position, LEFT))
 		execute_movement(game, position, LEFT);
-	else if (key == RIGHT && allow_movement(game->map2D, position, RIGHT))
+	else if (key == RIGHT && allow_movement(game, position, RIGHT))
 		execute_movement(game, position, RIGHT);
-	else if (key == UP && allow_movement(game->map2D, position, UP))
+	else if (key == UP && allow_movement(game, position, UP))
 		execute_movement(game, position, UP);
-	else if (key == DOWN && allow_movement(game->map2D, position, DOWN))
+	else if (key == DOWN && allow_movement(game, position, DOWN))
 		execute_movement(game, position, DOWN);
 	else if (key == ESCAPE)
 		clean_exit(game);

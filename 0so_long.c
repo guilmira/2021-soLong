@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:20:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/08 12:15:54 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/09 13:31:23 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@ void	leaks(void)
 {
 	system("leaks so_long");
 }
+
+
+//letras no aceptar
+//un solo personaje
+//al menos uane xit, que piller varias.
+
+
 
 /** PURPOSE : recieve argumens, build map2D and execute parser.
  * 1. Declare list and read file.ber.
@@ -36,8 +43,8 @@ static void	parser_and_management(t_program *game)
 	game->array_dimensions = get_dimensions(list_map);
 	game->map2D = fix_map(list_map, game->array_dimensions);
 	ft_fullclear(list_map);
-	//game->map2D = NULL;
 	parser = parser_map(game->map2D, game->array_dimensions);
+	//game->map2D = NULL;
 	if (!(game->map2D))
 		full_shutdown(game, EX2);
 	if (parser == 4)
@@ -46,6 +53,7 @@ static void	parser_and_management(t_program *game)
 		full_shutdown(game, EX5);
 	if (parser == 6)
 		full_shutdown(game, EX6);
+	game->total_collectables = get_collectables(game->map2D, game->array_dimensions);
 }
 
 /** PURPOSE : load images, animations, and write both into screen. */
@@ -53,8 +61,11 @@ static void	images_and_layers(t_program *game)
 {
 	game->static_images = load_images(game);
 	game->animations = load_animations(game);
+	game->animations_exit = load_animations2(game);
 	game->character_coords = element_position(game->map2D, game->array_dimensions, CHARACTER);
+	game->exit_coords = element_position(game->map2D, game->array_dimensions, EXIT);
 	put_layers(game);
+
 }
 
 /** PURPOSE : execute main routine of program */

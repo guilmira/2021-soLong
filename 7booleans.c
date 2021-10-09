@@ -6,38 +6,55 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:09:13 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/08 12:09:06 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/09 13:34:29 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/** PURPOSE : gives wall coordinates in destination position. */
-static t_vector	wall_position(t_vector element, int key)
+/** PURPOSE : gives coordinates in destination position. */
+static t_vector	destination_position(t_vector element, int key)
 {
-	t_vector	wall;
+	t_vector	destination;
 
-	wall.y = element.y;
-	wall.x = element.x;
+	destination.y = element.y;
+	destination.x = element.x;
 	if (key == LEFT)
-		wall.x = element.x - 1;
+		destination.x = element.x - 1;
 	else if (key == RIGHT)
-		wall.x = element.x + 1;
+		destination.x = element.x + 1;
 	else if (key == UP)
-		wall.y = element.y - 1;
+		destination.y = element.y - 1;
 	else if (key == DOWN)
-		wall.y = element.y + 1;
-	return (wall);
+		destination.y = element.y + 1;
+	return (destination);
 }
 
 /** PURPOSE : checks whether there is a wall in destination position. */
-t_bool	allow_movement(char **map2D, t_vector position, int key)
+t_bool	allow_movement(t_program *game, t_vector position, int key)
 {
-	t_vector	wall;
+	t_vector	destination;
+	char		**map2D;
 
-	wall = wall_position(position, key);
-	if (map2D[wall.y][wall.x] == '1')
+	map2D = game->map2D;
+	destination = destination_position(position, key);
+	if (map2D[destination.y][destination.x] == 'C')
+	{
+		map2D[destination.y][destination.x] = 0;
+		game->total_collectables--;
+	}
+	if (map2D[destination.y][destination.x] == '1')
 		return (0);
+	if (map2D[destination.y][destination.x] == 'E')
+	{
+		if (game->total_collectables)
+			return (0);
+		else
+		{
+			clean_exit(game);
+			exit(0);
+		}
+	}
 	else
 		return (1);
 }

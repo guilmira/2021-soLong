@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 09:19:00 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/08 12:12:25 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/09 12:47:52 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,11 @@ void	init_game(t_program *game)
 	game->array_dimensions.y = 0;
 	game->character_coords.x = 0;
 	game->character_coords.y = 0;
+	game->exit_coords.x = 0;
+	game->exit_coords.y = 0;
 	game->map2D = NULL;
 	game->static_images = NULL;
 	game->animations = NULL;
+	game->animations_exit = NULL;
+	game->total_collectables = 0;
 }

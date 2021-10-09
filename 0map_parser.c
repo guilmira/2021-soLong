@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 14:20:31 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/08 12:13:59 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/09 13:11:00 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,27 @@ int	parser_map(char **map, t_vector dimensions)
 	if (check_items(map, dimensions))
 		return (4);
 	return (0);
+}
+
+int	get_collectables(char **map, t_vector dimensions)
+{
+	int	i;
+	int	j;
+	int	total_collectables;
+
+	i = -1;
+	j = -1;
+	total_collectables = 0;
+	while (++i < dimensions.y)
+	{
+		while (++j < dimensions.x)
+		{
+			if (map[i][j] == 'C')
+				total_collectables++;
+		}
+		j = -1;
+	}
+	return (total_collectables);
 }
 
 /** PURPOSE : create char array 2D in heap from linked list.

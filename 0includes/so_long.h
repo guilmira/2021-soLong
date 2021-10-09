@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/08 12:32:19 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/09 13:34:53 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,22 @@
 # define PATH_MAP "./1maps/map.ber"
 /* ANIMATION SETTINGS */
 # define ANIMATION_FRAME 1700
+# define ANIMATION_FRAME2 4000
 # define FACTOR_SPRITE 0.25
+# define FACTOR_CAULDRON 0.1
 /* NUMBER OF IMAGES WITHOUT MOVEMENT */
 # define NUMBER_IMAGES 4
 # define NUMBER_ANIMATIONS 4
+# define NUMBER_ANIMATIONS1 4
 /* PATH TO ANIMATIONS */
 # define PATH_CHARACTER1 "./0images/0witch/1.xpm"
 # define PATH_CHARACTER2 "./0images/0witch/2.xpm"
 # define PATH_CHARACTER3 "./0images/0witch/3.xpm"
 # define PATH_CHARACTER4 "./0images/0witch/4.xpm"
+# define PATH_C1 "./0images/1cauldron/caul1.xpm"
+# define PATH_C2 "./0images/1cauldron/caul2.xpm"
+# define PATH_C3 "./0images/1cauldron/caul3.xpm"
+# define PATH_C4 "./0images/1cauldron/caul4.xpm"
 /* PATH TO IMAGES */
 # define PATH_BACKGROUND "./0images/grass.xpm"
 # define PATH_WALL "./0images/wall.xpm"
@@ -93,10 +100,15 @@ typedef struct	s_program
 	void		*window;
 	t_vector	array_dimensions;
 	t_vector	character_coords;
+	t_vector	exit_coords;
 	char		**map2D;
 	t_data		**static_images;
 	t_data		**animations;
+	t_data		**animations_exit;
+	int			total_collectables;
 }				t_program;
+
+int	get_collectables(char **map, t_vector dimensions);
 
 /* MAP PARSER */
 t_vector	get_dimensions(t_list *list_map);
@@ -116,18 +128,19 @@ void		push_image_towindow(t_program *game, t_data *image, t_vector coords);
 /* CREATE SPRITES */
 t_data	**load_images(t_program *game);
 t_data	**load_animations(t_program *game);
+t_data	**load_animations2(t_program *game);
 t_vector	element_position(char **map, t_vector array_dimensions, char z);
 /* PUT BACKGROUND */
 void		put_layers(t_program *game);
 /* LOOP SPRITE MOVEMENT */
-void		put_sprite(t_program *game, t_vector coords);
+void	put_sprite(t_program *game, t_vector coords, t_data **animations);
 void	wash_floor(t_program *game, t_vector coords);
 int			next_frame(t_program *game);
 /* CLEAR MEMORY */
 void		clean_exit(t_program *game);
 void		full_shutdown(t_program *game, char *string);
 /* CHARACTER MOVEMENT */
-t_bool	allow_movement(char **map2D, t_vector position, int key);
+t_bool	allow_movement(t_program *game, t_vector position, int key);
 int	movement_character(int key, t_program *game);
 
 /* RNDM DRAWING */

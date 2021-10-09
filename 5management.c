@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 10:40:52 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/08 12:17:38 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/09 13:30:57 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static void	clean_memory(t_program *game)
 		free(game->static_images);
 	if (game->animations)
 		free(game->animations);
+	if (game->animations_exit)
+		free(game->animations_exit);
 	free(game);
 }
 
@@ -60,9 +62,12 @@ static void	clear_images(t_program *game)
 		}
 	}
 	i = -1;
-	while (++i < NUMBER_ANIMATIONS)
+	while (++i < (NUMBER_ANIMATIONS + NUMBER_ANIMATIONS1))
 	{
-		image = game->animations[i];
+		if (i < NUMBER_ANIMATIONS)
+			image = game->animations[i];
+		else
+			image = game->animations_exit[i - NUMBER_ANIMATIONS];
 		if (image)
 		{
 			mlx_destroy_image(game->mlx_pointer, image->img);
@@ -77,7 +82,7 @@ static void	clear_images(t_program *game)
  * 3. Print error message and exit program. */
 void	full_shutdown(t_program *game, char *string)
 {
-	if (game->static_images && game->static_images)
+	if (game->static_images && game->animations)
 		clear_images(game);
 	if (game->window)
 		mlx_destroy_window(game->mlx_pointer, game->window);
