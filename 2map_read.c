@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   0map_parser.c                                      :+:      :+:    :+:   */
+/*   2map_read.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 14:20:31 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/09 13:11:00 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/12 10:18:50 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-/** PURPOSE : Obtain array dimensions from linked list.
- * 1. Also handles a bit of map parser. */
+/** PURPOSE : Obtain array dimensions from linked list. */
 t_vector	get_dimensions(t_list *list_map)
 {
 	t_vector	dimensions;
@@ -21,97 +20,6 @@ t_vector	get_dimensions(t_list *list_map)
 	dimensions.y = ft_lstsize(list_map);
 	dimensions.x = ft_strlen(list_map->content);
 	return (dimensions);
-}
-
-static int	check_items(char **map, t_vector dimensions)
-{
-	int	i;
-	int	j;
-	int	array[3];
-
-	i = -1;
-	while (++i < 3)
-		array[i] = 0;
-	i = -1;
-	j = -1;
-	while (++i < dimensions.y)
-	{
-		while (++j < dimensions.x)
-		{
-			if (map[i][j] == CHARACTER)
-				array[0]++;
-			if (map[i][j] == COLLECTABLE)
-				array[1]++;
-			if (map[i][j] == EXIT)
-				array[2]++;
-		}
-		j = -1;
-	}
-	i = -1;
-	while (++i < 3)
-	{
-		if (!array[i])
-			return (1);
-	}
-	return (0);
-}
-
-/** PURPOSE : main parser. Checks the following
- * 1. Dimensions are not bigger than given size.
- * 2. Dimensions are not 0.
- * 3. Map is indeed a rectangle. No file has an altered size.
- * 4. Maps are surrounded by walls, i.e. '1'.
- * 5. At least one exit, character and collectible are present. */
-int	parser_map(char **map, t_vector dimensions)
-{
-	int	i;
-	int	j;
-
-	i = -1;
-	j = -1;
-	if (dimensions.y > MAX_HEIGHT || dimensions.x > MAX_WIDTH)
-		return (6);
-	if (dimensions.y == 0 || dimensions.x == 0)
-		return (6);
-	while (++i < dimensions.y)
-	{
-		if ((int) ft_strlen(map[i]) != dimensions.x)
-			return (5);
-		while (++j < dimensions.x)
-		{
-			if (i == 0 || i == dimensions.y - 1)
-				if (map[i][j] != '1')
-					return (4);
-			if (j == 0 || j == dimensions.x - 1)
-				if (map[i][j] != '1')
-					return (4);
-		}
-		j = -1;
-	}
-	if (check_items(map, dimensions))
-		return (4);
-	return (0);
-}
-
-int	get_collectables(char **map, t_vector dimensions)
-{
-	int	i;
-	int	j;
-	int	total_collectables;
-
-	i = -1;
-	j = -1;
-	total_collectables = 0;
-	while (++i < dimensions.y)
-	{
-		while (++j < dimensions.x)
-		{
-			if (map[i][j] == 'C')
-				total_collectables++;
-		}
-		j = -1;
-	}
-	return (total_collectables);
 }
 
 /** PURPOSE : create char array 2D in heap from linked list.

@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/09 13:34:53 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/12 11:28:49 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,17 +42,6 @@
 # define PATH_WALL "./0images/wall.xpm"
 # define PATH_COLLECTABLE "./0images/potion.xpm"
 # define PATH_EXIT "./0images/red_potion.xpm"
-/* ERROR MESSAGES */
-# define EX		"Error.\n"
-# define EX1	"No memory available for allocation.\n"
-# define EX11	"No memory available for image allocation.\n"
-# define EX2	"Reading file was unsuccessful. File must have content. \n"
-# define EX3	"Could not generate new window.\n"
-# define EX4	"Map specifications not met. It must be surrounded by walls '1' \
-and it must have at least one exit 'E', one collectable 'C' \
-and one character 'P'. \n"
-# define EX5	"Incorrect shape of map, it must be a rectangle. \n"
-# define EX6	"Rows and lines may not be empty and must not bigger than 36 and 19.\n"
 /* WINDOW NAME */
 # define WINDOW_NAME "Retro Aquelarre"
 /* MAXIMUN WINDOW SIZE ALOWED - Mac Screen: 2560 x 1440 */
@@ -72,7 +61,6 @@ and one character 'P'. \n"
 # define COLLECTABLE 'C'
 # define EXIT 'E'
 
-
 /** PURPOSE : struct of a vector, 2D representation. */
 typedef struct s_vector
 {
@@ -82,7 +70,7 @@ typedef struct s_vector
 
 /** PURPOSE : struct that stores image data. Coordinates is
  * necessary when working with sprites. */
-typedef struct	s_data
+typedef struct s_data
 {
 	void		*img;
 	char		*addr;
@@ -94,7 +82,7 @@ typedef struct	s_data
 
 /** PURPOSE : struct that stores pointers of the mxl init and
  * the window init. Both pointers will be constantly refered to */
-typedef struct	s_program
+typedef struct s_program
 {
 	void		*mlx_pointer;
 	void		*window;
@@ -108,13 +96,13 @@ typedef struct	s_program
 	int			total_collectables;
 }				t_program;
 
-int	get_collectables(char **map, t_vector dimensions);
+int			get_collectables(char **map, t_vector dimensions);
 
 /* MAP PARSER */
 t_vector	get_dimensions(t_list *list_map);
 char		**fix_map(t_list *list_map, t_vector dimensions);
 t_list		*read_map(void);
-int	parser_map(char **map, t_vector dimensions);
+int			parser_map(char **map, t_vector dimensions);
 /* STRUCT INIT */
 void		init_game(t_program *game);
 void		init_window(t_program *game, t_vector window_dimensions);
@@ -124,26 +112,52 @@ t_vector	get_window_dimensions(t_vector dimensions);
 void		initalize_image(t_program *game, t_data *image);
 void		create_mold(t_data *image);
 void		put_pixel(t_data *data, int x, int y, int color);
-void		push_image_towindow(t_program *game, t_data *image, t_vector coords);
+void		push_image_towindow(t_program *game, t_data *image, \
+			t_vector coords);
 /* CREATE SPRITES */
-t_data	**load_images(t_program *game);
-t_data	**load_animations(t_program *game);
-t_data	**load_animations2(t_program *game);
+t_data		**load_images(t_program *game);
+t_data		**load_animations(t_program *game);
+t_data		**load_animations2(t_program *game);
 t_vector	element_position(char **map, t_vector array_dimensions, char z);
 /* PUT BACKGROUND */
 void		put_layers(t_program *game);
 /* LOOP SPRITE MOVEMENT */
-void	put_sprite(t_program *game, t_vector coords, t_data **animations);
-void	wash_floor(t_program *game, t_vector coords);
+void		put_sprite(t_program *game, t_vector coords, t_data **animations);
+void		wash_floor(t_program *game, t_vector coords);
 int			next_frame(t_program *game);
 /* CLEAR MEMORY */
 void		clean_exit(t_program *game);
-void		full_shutdown(t_program *game, char *string);
+void		full_shutdown(t_program *game, int signal);
 /* CHARACTER MOVEMENT */
-t_bool	allow_movement(t_program *game, t_vector position, int key);
-int	movement_character(int key, t_program *game);
+t_bool		allow_movement(t_program *game, t_vector position, int key);
+int			movement_character(int key, t_program *game);
 
 /* RNDM DRAWING */
 void		ft_draw(t_program *game, int x, int y, int color);
 void		ft_draw_up(t_program *game, int x, int y, int color);
+
+/* ERROR MESSAGES */
+# define EX		"Error.\n"
+# define EX1	"No memory available for allocation.\n"
+# define EX11	"No memory available for image allocation.\n"
+# define EX2	"Reading file was unsuccessful. File must have content. \n"
+# define EX3	"Could not generate new window.\n"
+# define EX5	"Map contains invalid character. \
+Only accepts '1', '0', 'P', 'C' and 'E'. \n"
+# define EX4	"Incorrect shape of map. It must have the following specs: \n \
+-> Must be a rectangle. \n \
+-> Must not be empty. \n \
+-> No more than 36 rows. \n \
+-> No more than 19 lines. \n \
+-> No empty lines, including at the end of file. \n"
+# define EX6	"Map specifications not met. \n \
+-> Must be surrounded by walls '1' \n \
+-> Must contain at least one exit 'E' \n \
+-> Must contain at least one collectable 'C' \n \
+-> Must contain at least one character 'P'. \n"
+# define EX7	"By developer choice, map specs only allow for: \n \
+-> A single character 'P' \n \
+-> A single exit 'E'.\n "
+
+
 #endif

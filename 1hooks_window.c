@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 10:03:52 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/08 12:16:06 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/12 11:29:22 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ void	init_window(t_program *game, t_vector window_dimensions)
 	game->window = mlx_new_window(game->mlx_pointer, \
 	window_dimensions.x, window_dimensions.y, WINDOW_NAME);
 	if (!game->window)
-		full_shutdown(game, EX3);
+		full_shutdown(game, 3);
 	mlx_hook(game->window, 17, 0, ft_exit, game);
 }

@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:20:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/09 13:31:23 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/12 11:29:16 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@ void	leaks(void)
 	system("leaks so_long");
 }
 
-
-//letras no aceptar
-//un solo personaje
-//al menos uane xit, que piller varias.
 
 
 
@@ -39,20 +35,16 @@ static void	parser_and_management(t_program *game)
 	list_map = read_map();
 	//list_map = NULL;
 	if (!list_map)
-		full_shutdown(game, EX2);
+		full_shutdown(game, 2);
 	game->array_dimensions = get_dimensions(list_map);
 	game->map2D = fix_map(list_map, game->array_dimensions);
 	ft_fullclear(list_map);
 	parser = parser_map(game->map2D, game->array_dimensions);
 	//game->map2D = NULL;
 	if (!(game->map2D))
-		full_shutdown(game, EX2);
-	if (parser == 4)
-		full_shutdown(game, EX4);
-	if (parser == 5)
-		full_shutdown(game, EX5);
-	if (parser == 6)
-		full_shutdown(game, EX6);
+		full_shutdown(game, 2);
+	if (parser)
+		full_shutdown(game, parser);
 	game->total_collectables = get_collectables(game->map2D, game->array_dimensions);
 }
 
@@ -95,8 +87,6 @@ int	main(void)
 	hooks_and_loops(game);
 	return (0);
 }
-//Un contador de movimiento directamente mostrado en pantalla en lugar de en el terminal.
-//mostrar nombre de Morgana con letras chulas y movimientos para el bonus .
 
 /* if (!game->window) //might need to free window later on. check manual..
-		full_shutdown(game, EX3); */
+		full_shutdown(game, 3); */

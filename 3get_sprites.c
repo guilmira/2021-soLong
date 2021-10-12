@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 10:30:47 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/09 13:23:47 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/12 11:29:29 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static t_data	*ft_newsprite(t_program *game, char *path)
 
 	new_image = ft_calloc(1, sizeof(*new_image));
 	if (!new_image)
-		full_shutdown(game, EX11);
+		full_shutdown(game, 11);
 	load_image_n_getdata(game, new_image, path);
 	return (new_image);
 }

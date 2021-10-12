@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 10:40:52 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/09 13:30:57 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/12 11:31:31 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,32 @@ static void	clear_images(t_program *game)
 	}
 }
 
+/** PURPOSE : print appropriate error message to guide user. */
+static void	print_error_message(int signal)
+{
+	if (signal == 1)
+		ft_putstr_fd(EX1, 1);
+	if (signal == 11)
+		ft_putstr_fd(EX11, 1);
+	if (signal == 2)
+		ft_putstr_fd(EX2, 1);
+	if (signal == 3)
+		ft_putstr_fd(EX3, 1);
+	if (signal == 4)
+		ft_putstr_fd(EX4, 1);
+	if (signal == 5)
+		ft_putstr_fd(EX5, 1);
+	if (signal == 6)
+		ft_putstr_fd(EX6, 1);
+	if (signal == 7)
+		ft_putstr_fd(EX7, 1);
+}
+
 /** PURPOSE : shutdown program meanwhile freeing heap allocated memory.
  * 1. Close window if exists.
  * 2. Clean memory for all structs allocated.
  * 3. Print error message and exit program. */
-void	full_shutdown(t_program *game, char *string)
+void	full_shutdown(t_program *game, int signal)
 {
 	if (game->static_images && game->animations)
 		clear_images(game);
@@ -88,7 +109,7 @@ void	full_shutdown(t_program *game, char *string)
 		mlx_destroy_window(game->mlx_pointer, game->window);
 	clean_memory(game);
 	ft_putstr_fd(EX, 1);
-	ft_putstr_fd(string, 1);
+	print_error_message(signal);
 	ft_shutdown();
 }
 

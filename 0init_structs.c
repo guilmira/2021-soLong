@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 09:19:00 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/09 12:47:52 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/12 11:23:45 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_game(t_program *game)
 {
 	game->mlx_pointer = mlx_init();
 	if (!game->mlx_pointer)
-		full_shutdown(game, EX1);
+		full_shutdown(game, 1);
 	game->window = NULL;
 	game->array_dimensions.x = 0;
 	game->array_dimensions.y = 0;
