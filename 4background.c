@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 12:53:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/08 12:17:20 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/12 13:20:11 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,26 @@ void	put_layers(t_program *game)
 	put_item(game, game->map2D, WALL, image);
 	image = game->static_images[2];
 	put_item(game, game->map2D, COLLECTABLE, image);
+}
+
+/** PURPOSE : Counts total collectable number. */
+int	get_collectables(char **map, t_vector dimensions)
+{
+	int	i;
+	int	j;
+	int	total_collectables;
+
+	i = -1;
+	j = -1;
+	total_collectables = 0;
+	while (++i < dimensions.y)
+	{
+		while (++j < dimensions.x)
+		{
+			if (map[i][j] == 'C')
+				total_collectables++;
+		}
+		j = -1;
+	}
+	return (total_collectables);
 }

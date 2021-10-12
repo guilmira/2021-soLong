@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/12 11:28:49 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/12 14:38:14 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "libft.h"
 # include <fcntl.h>
 /* PATH TO MAP */
-# define PATH_MAP "./1maps/map.ber"
+# define PATH_MAP "./1maps/map2.ber"
 /* ANIMATION SETTINGS */
 # define ANIMATION_FRAME 1700
 # define ANIMATION_FRAME2 4000
@@ -96,13 +96,12 @@ typedef struct s_program
 	int			total_collectables;
 }				t_program;
 
-int			get_collectables(char **map, t_vector dimensions);
-
 /* MAP PARSER */
 t_vector	get_dimensions(t_list *list_map);
-char		**fix_map(t_list *list_map, t_vector dimensions);
 t_list		*read_map(void);
+char		**fix_map(t_list *list_map, t_vector dimensions);
 int			parser_map(char **map, t_vector dimensions);
+int			check_items(char **map, t_vector dimensions, char z);
 /* STRUCT INIT */
 void		init_game(t_program *game);
 void		init_window(t_program *game, t_vector window_dimensions);
@@ -118,9 +117,9 @@ void		push_image_towindow(t_program *game, t_data *image, \
 t_data		**load_images(t_program *game);
 t_data		**load_animations(t_program *game);
 t_data		**load_animations2(t_program *game);
-t_vector	element_position(char **map, t_vector array_dimensions, char z);
 /* PUT BACKGROUND */
 void		put_layers(t_program *game);
+int			get_collectables(char **map, t_vector dimensions);
 /* LOOP SPRITE MOVEMENT */
 void		put_sprite(t_program *game, t_vector coords, t_data **animations);
 void		wash_floor(t_program *game, t_vector coords);
@@ -128,13 +127,12 @@ int			next_frame(t_program *game);
 /* CLEAR MEMORY */
 void		clean_exit(t_program *game);
 void		full_shutdown(t_program *game, int signal);
+void		print_error_message(int signal);
+void		clear_images(t_program *game);
 /* CHARACTER MOVEMENT */
 t_bool		allow_movement(t_program *game, t_vector position, int key);
 int			movement_character(int key, t_program *game);
-
-/* RNDM DRAWING */
-void		ft_draw(t_program *game, int x, int y, int color);
-void		ft_draw_up(t_program *game, int x, int y, int color);
+t_vector	element_position(char **map, t_vector array_dimensions, char z);
 
 /* ERROR MESSAGES */
 # define EX		"Error.\n"
@@ -158,6 +156,5 @@ Only accepts '1', '0', 'P', 'C' and 'E'. \n"
 # define EX7	"By developer choice, map specs only allow for: \n \
 -> A single character 'P' \n \
 -> A single exit 'E'.\n "
-
 
 #endif

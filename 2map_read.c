@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 14:20:31 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/12 10:18:50 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/12 14:53:58 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,28 @@ t_list	*read_map(void)
 	}
 	close(fd);
 	return (list_map);
+}
+
+/** PURPOSE : Check that there is at least one of each item. */
+int	check_items(char **map, t_vector dimensions, char z)
+{
+	int	i;
+	int	j;
+	int	counter;
+
+	i = -1;
+	j = -1;
+	counter = 0;
+	while (++i < dimensions.y)
+	{
+		while (++j < dimensions.x)
+		{
+			if (map[i][j] == z)
+				counter++;
+		}
+		j = -1;
+	}
+	if (!counter)
+		return (1);
+	return (0);
 }

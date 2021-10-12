@@ -6,65 +6,11 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/12 10:16:10 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/12 11:33:09 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/12 13:43:09 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-/** PURPOSE : Counts total collectable number. */
-int	get_collectables(char **map, t_vector dimensions)
-{
-	int	i;
-	int	j;
-	int	total_collectables;
-
-	i = -1;
-	j = -1;
-	total_collectables = 0;
-	while (++i < dimensions.y)
-	{
-		while (++j < dimensions.x)
-		{
-			if (map[i][j] == 'C')
-				total_collectables++;
-		}
-		j = -1;
-	}
-	return (total_collectables);
-}
-
-/** PURPOSE : Check that there is at least one of each item. */
-static int	check_items(char **map, t_vector dimensions)
-{
-	int	i;
-	int	j;
-	int	array[3];
-
-	i = -1;
-	while (++i < 3)
-		array[i] = 0;
-	i = -1;
-	j = -1;
-	while (++i < dimensions.y)
-	{
-		while (++j < dimensions.x)
-		{
-			if (map[i][j] == CHARACTER)
-				array[0]++;
-			if (map[i][j] == COLLECTABLE)
-				array[1]++;
-			if (map[i][j] == EXIT)
-				array[2]++;
-		}
-		j = -1;
-	}
-	i = -1;
-	while (++i < 3)
-		if (!array[i])
-			return (1);
-	return (0);
-}
 
 /** PURPOSE : Check whether character or exit is duplicate. */
 static int	check_duplicates(char **map, t_vector dimensions, char z)
@@ -113,7 +59,6 @@ static int	ft_borders(char z, int i, int j, t_vector dimensions)
 	return (1);
 }
 
-
 /** PURPOSE : Checks dimensions of map in the following order:
  * 1. Map is not bigger than given size.
  * 2. Map is not empty.
@@ -142,7 +87,6 @@ int	parser_map(char **map, t_vector dimensions)
 
 	i = -1;
 	j = -1;
-
 	while (++i < dimensions.y)
 	{
 		if (parser_dimensions(dimensions, map[i]))
@@ -156,7 +100,8 @@ int	parser_map(char **map, t_vector dimensions)
 		}
 		j = -1;
 	}
-	if (check_items(map, dimensions))
+	if (check_items(map, dimensions, CHARACTER) || check_items(map, \
+	dimensions, EXIT) || check_items(map, dimensions, COLLECTABLE))
 		return (6);
 	if (check_duplicates(map, dimensions, CHARACTER) || \
 	check_duplicates(map, dimensions, EXIT))

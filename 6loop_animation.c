@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 15:59:31 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/09 12:24:32 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/12 12:58:18 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,32 @@ int	next_frame(t_program *game)
 	put_sprite(game, game->character_coords, game->animations);
 	put_sprite2(game, game->exit_coords, game->animations_exit);
 	return (0);
+}
+
+/** PURPOSE : Obtain array-map coordinates of given element "z";
+ * 1. Search array for argument character 'z'. */
+t_vector	element_position(char **map, t_vector array_dimensions, char z)
+{
+	int			i;
+	int			j;
+	t_vector	element;
+
+	i = -1;
+	j = -1;
+	element.y = i;
+	element.x = j;
+	while (++i < array_dimensions.y)
+	{
+		while (++j < array_dimensions.x)
+		{
+			if (map[i][j] == z)
+			{
+				element.y = i;
+				element.x = j;
+				return (element);
+			}
+		}
+		j = -1;
+	}
+	return (element);
 }

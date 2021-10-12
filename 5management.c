@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 10:40:52 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/12 11:31:31 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/12 15:37:58 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,15 @@ static void	clean_memory(t_program *game)
 	if (game->animations_exit)
 		free(game->animations_exit);
 	free(game);
+	system("leaks so_long");
 }
 
-/** PURPOSE : Destroy and free memory allocated for imgs. */
-static void	clear_images(t_program *game)
+/** PURPOSE : Destroy and free memory allocated for animations. */
+static void	clear_animations(t_program *game)
 {
 	t_data		*image;
 	int			i;
 
-	i = -1;
-	while (++i < NUMBER_IMAGES)
-	{
-		image = game->static_images[i];
-		if (image)
-		{
-			mlx_destroy_image(game->mlx_pointer, image->img);
-			free(image);
-		}
-	}
 	i = -1;
 	while (++i < (NUMBER_ANIMATIONS + NUMBER_ANIMATIONS1))
 	{
@@ -76,35 +67,16 @@ static void	clear_images(t_program *game)
 	}
 }
 
-/** PURPOSE : print appropriate error message to guide user. */
-static void	print_error_message(int signal)
-{
-	if (signal == 1)
-		ft_putstr_fd(EX1, 1);
-	if (signal == 11)
-		ft_putstr_fd(EX11, 1);
-	if (signal == 2)
-		ft_putstr_fd(EX2, 1);
-	if (signal == 3)
-		ft_putstr_fd(EX3, 1);
-	if (signal == 4)
-		ft_putstr_fd(EX4, 1);
-	if (signal == 5)
-		ft_putstr_fd(EX5, 1);
-	if (signal == 6)
-		ft_putstr_fd(EX6, 1);
-	if (signal == 7)
-		ft_putstr_fd(EX7, 1);
-}
-
 /** PURPOSE : shutdown program meanwhile freeing heap allocated memory.
  * 1. Close window if exists.
  * 2. Clean memory for all structs allocated.
  * 3. Print error message and exit program. */
 void	full_shutdown(t_program *game, int signal)
 {
-	if (game->static_images && game->animations)
+	if (game->static_images)
 		clear_images(game);
+	if (game->animations)
+		clear_animations(game);
 	if (game->window)
 		mlx_destroy_window(game->mlx_pointer, game->window);
 	clean_memory(game);
@@ -120,6 +92,7 @@ void	full_shutdown(t_program *game, int signal)
 void	clean_exit(t_program *game)
 {
 	clear_images(game);
+	clear_animations(game);
 	if (game->window)
 		mlx_destroy_window(game->mlx_pointer, game->window);
 	clean_memory(game);

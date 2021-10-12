@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/01 10:30:47 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/12 11:29:29 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/12 12:58:13 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,34 +34,6 @@ static t_data	*ft_newsprite(t_program *game, char *path)
 		full_shutdown(game, 11);
 	load_image_n_getdata(game, new_image, path);
 	return (new_image);
-}
-
-/** PURPOSE : Obtain array-map coordinates of given element "z";
- * 1. Search array for argument character 'z'. */
-t_vector	element_position(char **map, t_vector array_dimensions, char z)
-{
-	int			i;
-	int			j;
-	t_vector	element;
-
-	i = -1;
-	j = -1;
-	element.y = i;
-	element.x = j;
-	while (++i < array_dimensions.y)
-	{
-		while (++j < array_dimensions.x)
-		{
-			if (map[i][j] == z)
-			{
-				element.y = i;
-				element.x = j;
-				return (element);
-			}
-		}
-		j = -1;
-	}
-	return (element);
 }
 
 /** PURPOSE : Load static images by searching path. */
