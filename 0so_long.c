@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:20:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/13 15:56:32 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/13 19:55:17 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,11 +89,6 @@ char	*parser_argument(int argc, char *file_name)
 	return (path);
 }
 
-void	leaks(void)
-{
-	system("leaks so_long");
-}
-
 /** PURPOSE : init 42minilibx, open window, and load an image.
  * 1. Define structure game (contains the lib and the window) and image.
  * 2. Define structure image (contains address of the image and parameters).
@@ -103,7 +98,6 @@ int	main(int argc, char *argv[])
 	t_program	*game;
 	char		*map_path;
 
-	//atexit(leaks);
 	game = ft_calloc(1, sizeof(*game));
 	if (!game)
 		full_shutdown(game, 1);

@@ -6,7 +6,7 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/28 12:11:49 by guilmira          #+#    #+#              #
-#    Updated: 2021/10/13 18:14:19 by guilmira         ###   ########.fr        #
+#    Updated: 2021/10/13 19:55:22 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME_MAP 	= map2.ber
 #--------------------------------------------------------------------------------------------------------------COMPILER
 NAME		= so_long
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror #-g -fsanitize=address
 #--------------------------------------------------------------------------------------------------------------LIBS
 LIB_DIR		= libft_submodule
 LIB			= $(LIB_DIR)/libft.a
