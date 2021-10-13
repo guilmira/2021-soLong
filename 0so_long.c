@@ -6,16 +6,18 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:20:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/13 09:20:47 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/13 09:43:49 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	leaks(void)
+//primer agrumento. mapa extension.ber
+
+/* void	leaks(void)
 {
 	system("leaks so_long");
-}
+} */
 
 /** PURPOSE : recieve argumens, build map2D and execute parser.
  * 1. Declare list and read file.ber.
@@ -73,7 +75,7 @@ int	main(void)
 {
 	t_program	*game;
 
-	atexit(leaks);
+	//atexit(leaks);
 	game = ft_calloc(1, sizeof(*game));
 	if (!game)
 		ft_shutdown();

@@ -6,19 +6,20 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/12 14:38:14 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/13 09:53:17 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+/* LIBS */
 # include <stdio.h>
 # include "mlx.h"
 # include "libft.h"
 # include <fcntl.h>
 /* PATH TO MAP */
-# define PATH_MAP "./1maps/map2.ber"
+# define PATH_MAP "./1maps/map.ber"
 /* ANIMATION SETTINGS */
 # define ANIMATION_FRAME 1700
 # define ANIMATION_FRAME2 4000
@@ -28,7 +29,7 @@
 # define NUMBER_IMAGES 4
 # define NUMBER_ANIMATIONS 4
 # define NUMBER_ANIMATIONS1 4
-/* PATH TO ANIMATIONS */
+/* PATH TO ANIMATIONS - Credits: 9EO 9e0.itch.io */
 # define PATH_CHARACTER1 "./0images/0witch/1.xpm"
 # define PATH_CHARACTER2 "./0images/0witch/2.xpm"
 # define PATH_CHARACTER3 "./0images/0witch/3.xpm"
@@ -41,10 +42,9 @@
 # define PATH_BACKGROUND "./0images/grass.xpm"
 # define PATH_WALL "./0images/wall.xpm"
 # define PATH_COLLECTABLE "./0images/potion.xpm"
-# define PATH_EXIT "./0images/red_potion.xpm"
 /* WINDOW NAME */
 # define WINDOW_NAME "Retro Aquelarre"
-/* MAXIMUN WINDOW SIZE ALOWED - Mac Screen: 2560 x 1440 */
+/* MAXIMUN WINDOW SIZE ALLOWED - Mac Screen: 2560 x 1440 */
 # define MAX_HEIGHT 19
 # define MAX_WIDTH 36
 /* TILE DIMENSIONS */

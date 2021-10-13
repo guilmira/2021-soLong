@@ -6,7 +6,7 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/28 12:11:49 by guilmira          #+#    #+#              #
-#    Updated: 2021/10/12 15:30:19 by guilmira         ###   ########.fr        #
+#    Updated: 2021/10/13 12:45:16 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,6 @@ SRCS		=	0so_long.c 0init_structs.c 1control_window.c \
 				5management.c 6loop_animation.c \
 				7booleans_n_tools.c 7hook_movement.c 8image_functions.c
 OBJS		= $(SRCS:.c=.o)
-OBJS_AUX	= $(SRCS_AUX:.c=.o)
 #--------------------------------------------------------------------------------------------------------------RULES
 all: $(LIB) $(NAME)
 
