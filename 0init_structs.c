@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/06 09:19:00 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/13 08:43:08 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:20:53 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
  * 3. Allocates memory for both mlx_pointer and sprite image database. */
 void	init_game(t_program *game)
 {
+
+
 	game->mlx_pointer = mlx_init();
 	if (!game->mlx_pointer)
 		full_shutdown(game, 1);

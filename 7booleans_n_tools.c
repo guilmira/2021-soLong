@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/05 12:09:13 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/12 14:38:09 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/13 14:51:15 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	print_error_message(int signal)
 		ft_putstr_fd(EX11, 1);
 	if (signal == 2)
 		ft_putstr_fd(EX2, 1);
+	if (signal == 22)
+		ft_putstr_fd(EX22, 1);
 	if (signal == 3)
 		ft_putstr_fd(EX3, 1);
 	if (signal == 4)

@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/13 09:53:17 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:11:50 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include "libft.h"
 # include <fcntl.h>
 /* PATH TO MAP */
-# define PATH_MAP "./1maps/map.ber"
+# define FOLDER_PATH "./1maps/"
 /* ANIMATION SETTINGS */
 # define ANIMATION_FRAME 1700
 # define ANIMATION_FRAME2 4000
@@ -98,7 +98,7 @@ typedef struct s_program
 
 /* MAP PARSER */
 t_vector	get_dimensions(t_list *list_map);
-t_list		*read_map(void);
+t_list		*read_map(char *file_name);
 char		**fix_map(t_list *list_map, t_vector dimensions);
 int			parser_map(char **map, t_vector dimensions);
 int			check_items(char **map, t_vector dimensions, char z);
@@ -138,7 +138,10 @@ t_vector	element_position(char **map, t_vector array_dimensions, char z);
 # define EX		"Error.\n"
 # define EX1	"No memory available for allocation.\n"
 # define EX11	"No memory available for image allocation.\n"
-# define EX2	"Reading file was unsuccessful. File must have content. \n"
+# define EX2	"Argument needed. Use of program: ./so_long [FILENAME.ber] \n"
+# define EX22	"Reading file was unsuccessful. \n \
+-> File must exist and be stored in folder '1maps'. \n \
+-> File must have content. \n"
 # define EX3	"Could not generate new window.\n"
 # define EX5	"Map contains invalid character. \
 Only accepts '1', '0', 'P', 'C' and 'E'. \n"

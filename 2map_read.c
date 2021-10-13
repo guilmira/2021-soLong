@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 14:20:31 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/13 09:03:50 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:10:34 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ char	**fix_map(t_list *list_map, t_vector dimensions)
  * IMPORTANT2 : after reading the file, gen next line is exxecuted one last time
  * and gives the zero value. that execution allocates memory for line, therfore
  * line must be freed after loop in order to prevent a mem-leak. */
-t_list	*read_map(void)
+t_list	*read_map(char *file_name)
 {
 	t_list	*list_map;
 	char	*line;
@@ -69,7 +69,7 @@ t_list	*read_map(void)
 
 	list_map = NULL;
 	line = NULL;
-	fd = open(PATH_MAP, O_RDONLY);
+	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
 		return (NULL);
 	gnl = get_next_line(fd, &line);

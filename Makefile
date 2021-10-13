@@ -6,14 +6,15 @@
 #    By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/09/28 12:11:49 by guilmira          #+#    #+#              #
-#    Updated: 2021/10/13 12:45:16 by guilmira         ###   ########.fr        #
+#    Updated: 2021/10/13 15:20:20 by guilmira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+NAME_MAP 	= map.ber
 #--------------------------------------------------------------------------------------------------------------COMPILER
 NAME		= so_long
 CC			= gcc
-CFLAGS		= -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS		= -Wall -Wextra -Werror -g -fsanitize=address
 #--------------------------------------------------------------------------------------------------------------LIBS
 LIB_DIR		= libft_submodule
 LIB			= $(LIB_DIR)/libft.a
@@ -39,7 +40,7 @@ $(NAME): $(OBJS) $(LIB)
 	@echo $(GREEN) "$(NAME) compiled" $(NONE)
 
 exe: $(NAME)
-	./$(NAME)
+	./$(NAME) $(NAME_MAP)
 
 norm:
 	norminette $(SRCS)
