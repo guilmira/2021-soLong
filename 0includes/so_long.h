@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/28 13:21:07 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/13 15:11:50 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:47:49 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ typedef struct s_program
 	t_vector	array_dimensions;
 	t_vector	character_coords;
 	t_vector	exit_coords;
+	char		*map_path;
 	char		**map2D;
 	t_data		**static_images;
 	t_data		**animations;
@@ -138,7 +139,9 @@ t_vector	element_position(char **map, t_vector array_dimensions, char z);
 # define EX		"Error.\n"
 # define EX1	"No memory available for allocation.\n"
 # define EX11	"No memory available for image allocation.\n"
-# define EX2	"Argument needed. Use of program: ./so_long [FILENAME.ber] \n"
+# define EX2	"Argument needs to be properly introduced. Use of program: ./so_long [FILENAME.ber] \n \
+-> File name must have '.ber' extension.\n \
+-> File name must not have spaces, tabs or similar.\n"
 # define EX22	"Reading file was unsuccessful. \n \
 -> File must exist and be stored in folder '1maps'. \n \
 -> File must have content. \n"

@@ -6,32 +6,25 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:20:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/13 15:20:44 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:56:32 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-//primer agrumento. mapa extension.ber
-
-/* void	leaks(void)
-{
-	system("leaks so_long");
-} */
 
 /** PURPOSE : recieve argumens, build map2D and execute parser.
  * 1. Declare list and read file.ber.
  * 2. Get dimensions of map and built it into a 2D array.
  * 3. Clear list.
  * 4. Exceute parser of map. */
-static void	parser_and_management(t_program *game, char *file_name)
+static void	parser_and_management(t_program *game)
 {
 	int		parser;
 	t_list	*list_map;
 
 	parser = 0;
 	list_map = NULL;
-	list_map = read_map(file_name);
+	list_map = read_map(game->map_path);
 	if (!list_map)
 		full_shutdown(game, 22);
 	game->array_dimensions = get_dimensions(list_map);
@@ -67,9 +60,14 @@ static void	hooks_and_loops(t_program *game)
 	mlx_loop(game->mlx_pointer);
 }
 
+/** PURPOSE : evaluate single input to program and creat path to folder.
+ * 1. File name must be ended in '.ber'.
+ * 2. File name must not contain spaces. */
 char	*parser_argument(int argc, char *file_name)
 {
+	int		i;
 	char	*path;
+	int		length;
 
 	if (argc != 2)
 	{
@@ -77,10 +75,23 @@ char	*parser_argument(int argc, char *file_name)
 		print_error_message(2);
 		ft_shutdown();
 	}
+	length = ft_strlen(file_name);
+	i = -1;
+	while (++i < length - 4)
+		if (ft_isspaces(file_name[i]))
+			return (NULL);
+	if (file_name[i] != '.' || file_name[i + 1] != 'b' || \
+	file_name[i + 2] != 'e' || file_name[i + 3] != 'r')
+		return (NULL);
 	path = ft_strjoin(FOLDER_PATH, file_name);
 	if (!path)
 		return (NULL);
 	return (path);
+}
+
+void	leaks(void)
+{
+	system("leaks so_long");
 }
 
 /** PURPOSE : init 42minilibx, open window, and load an image.
@@ -93,18 +104,15 @@ int	main(int argc, char *argv[])
 	char		*map_path;
 
 	//atexit(leaks);
-	map_path = NULL;
-	map_path = parser_argument(argc, argv[1]);
-	if (!map_path)
-		ft_shutdown();
 	game = ft_calloc(1, sizeof(*game));
 	if (!game)
-	{
-		free(map_path);
-		ft_shutdown();
-	}
-	init_game(game); //meter aqui el calloc. y el return que sea game.
-	parser_and_management(game, map_path);
+		full_shutdown(game, 1);
+	map_path = NULL;
+	game->map_path = parser_argument(argc, argv[1]);
+	if (!game->map_path)
+		full_shutdown(game, 2);
+	init_game(game);
+	parser_and_management(game);
 	init_window(game, get_window_dimensions(game->array_dimensions));
 	images_and_layers(game);
 	hooks_and_loops(game);

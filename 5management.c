@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 10:40:52 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/13 09:19:47 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/13 15:29:28 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ static void	clear_animations(t_program *game)
  * 3. Free game struct if previously allocated. */
 static void	clean_memory(t_program *game)
 {
+	if (game->map_path)
+		free(game->map_path);
 	if (game->map2D)
 		free_map(game);
 	if (game->static_images)
@@ -72,6 +74,11 @@ static void	clean_memory(t_program *game)
  * 3. Print error message and exit program. */
 void	full_shutdown(t_program *game, int signal)
 {
+	if (!game)
+	{
+		print_error_message(signal);
+		ft_shutdown();
+	}
 	if (game->static_images)
 		clear_images(game);
 	if (game->animations)
