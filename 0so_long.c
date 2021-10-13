@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:20:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/12 15:40:50 by guilmira         ###   ########.fr       */
+/*   Updated: 2021/10/13 09:20:47 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,6 @@ void	leaks(void)
 {
 	system("leaks so_long");
 }
-
-/* if (!game->window) //might need to free window later on. check manual..
-		full_shutdown(game, 3); */
 
 /** PURPOSE : recieve argumens, build map2D and execute parser.
  * 1. Declare list and read file.ber.
@@ -33,14 +30,12 @@ static void	parser_and_management(t_program *game)
 	parser = 0;
 	list_map = NULL;
 	list_map = read_map();
-	//list_map = NULL; si lo usas mete fullclear
 	if (!list_map)
 		full_shutdown(game, 2);
 	game->array_dimensions = get_dimensions(list_map);
 	game->map2D = fix_map(list_map, game->array_dimensions);
 	ft_fullclear(list_map);
 	parser = parser_map(game->map2D, game->array_dimensions);
-	//game->map2D = NULL; //aqui puede Leaks. serio.
 	if (!(game->map2D))
 		full_shutdown(game, 2);
 	if (parser)
@@ -78,16 +73,11 @@ int	main(void)
 {
 	t_program	*game;
 
-	//atexit(leaks);
+	atexit(leaks);
 	game = ft_calloc(1, sizeof(*game));
 	if (!game)
 		ft_shutdown();
 	init_game(game);
-	/* if (1)
-	{
-		printf("HEyyy\n");
-		full_shutdown(game, 2);
-	} */
 	parser_and_management(game);
 	init_window(game, get_window_dimensions(game->array_dimensions));
 	images_and_layers(game);
