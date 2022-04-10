@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 10:40:52 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/13 15:29:28 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/04/10 12:27:42 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	full_shutdown(t_program *game, int signal)
 	if (!game)
 	{
 		print_error_message(signal);
-		ft_shutdown();
+		ft_shut("");
 	}
 	if (game->static_images)
 		clear_images(game);
@@ -88,7 +88,7 @@ void	full_shutdown(t_program *game, int signal)
 	clean_memory(game);
 	ft_putstr_fd(EX, 1);
 	print_error_message(signal);
-	ft_shutdown();
+	ft_shut("");
 }
 
 /** PURPOSE : Neat program exit.

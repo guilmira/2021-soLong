@@ -6,7 +6,7 @@
 /*   By: guilmira <guilmira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/30 13:20:33 by guilmira          #+#    #+#             */
-/*   Updated: 2021/10/15 17:44:58 by guilmira         ###   ########.fr       */
+/*   Updated: 2022/04/10 12:29:31 by guilmira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*parser_argument(int argc, char *file_name)
 	{
 		ft_putstr_fd(EX, 1);
 		print_error_message(2);
-		ft_shutdown();
+		ft_shut("");
 	}
 	length = ft_strlen(file_name);
 	i = -1;
