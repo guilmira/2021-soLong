@@ -15,7 +15,7 @@
 
 /* LIBS */
 # include <stdio.h>
-# include "mlx.h"
+# include "../minilibx-linux/mlx.h"
 # include "libft.h"
 # include <fcntl.h>
 /* PATH TO MAP */
