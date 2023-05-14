@@ -19,7 +19,7 @@ CFLAGS		= -Wall -Wextra -Werror #-g -fsanitize=address
 LIB_DIR		= libft_submodule
 LIB			= $(LIB_DIR)/libft.a
 INCLUDES	= -I ./0includes -I ./libft_submodule/0includes
-INCLUDES_LIBX	= -lmlx -framework OpenGL -framework AppKit
+INCLUDES_LIBX	= -lmlx -lXext -lX11 -lm -L ./minilibx-linux
 #--------------------------------------------------------------------------------------------------------------SOURCES
 SRCS		=	0so_long.c 0init_structs.c 1control_window.c \
 				2map_parser.c 2map_read.c 3get_sprites.c 4background.c \

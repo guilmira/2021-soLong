@@ -96,12 +96,10 @@ char	*parser_argument(int argc, char *file_name)
 int	main(int argc, char *argv[])
 {
 	t_program	*game;
-	char		*map_path;
 
 	game = ft_calloc(1, sizeof(*game));
 	if (!game)
 		full_shutdown(game, 1);
-	map_path = NULL;
 	game->map_path = parser_argument(argc, argv[1]);
 	if (!game->map_path)
 		full_shutdown(game, 2);

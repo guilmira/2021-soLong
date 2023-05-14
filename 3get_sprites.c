@@ -40,9 +40,7 @@ static t_data	*ft_newsprite(t_program *game, char *path)
 t_data	**load_images(t_program *game)
 {
 	t_data	**static_images;
-	int		i;
 
-	i = -1;
 	static_images = ft_calloc(NUMBER_IMAGES + 1, sizeof(t_data **));
 	if (!static_images)
 		return (NULL);
@@ -57,9 +55,7 @@ t_data	**load_images(t_program *game)
 t_data	**load_animations(t_program *game)
 {
 	t_data	**animations;
-	int		i;
 
-	i = -1;
 	animations = ft_calloc(NUMBER_ANIMATIONS + 1, sizeof(t_data **));
 	if (!animations)
 		return (NULL);
@@ -75,9 +71,7 @@ t_data	**load_animations(t_program *game)
 t_data	**load_animations2(t_program *game)
 {
 	t_data	**animations;
-	int		i;
 
-	i = -1;
 	animations = ft_calloc(NUMBER_ANIMATIONS1 + 1, sizeof(t_data **));
 	if (!animations)
 		return (NULL);
