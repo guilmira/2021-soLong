@@ -1,3 +1,6 @@
 [submodule "libft_submodule"]
 	path = libft_submodule
 	url = https://github.com/GuilleMira/libft_submodule.git
+[submodule "minilibx-linux"]
+	path = minilibx-linux
+	url = /home/wachu/Escritorio/soLong
