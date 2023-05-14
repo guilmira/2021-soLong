@@ -3,4 +3,4 @@
 	url = https://github.com/GuilleMira/libft_submodule.git
 [submodule "minilibx-linux"]
 	path = minilibx-linux
-	url = /home/wachu/Escritorio/soLong
+	url = https://github.com/42Paris/minilibx-linux.git
