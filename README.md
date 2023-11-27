@@ -2,7 +2,7 @@
 This project is a small 2D game with minilibx. Textures, sprites and tiles included.
 
 
-![](https://github.com/guilmira/soLong/blob/master/showCase/show-off.gif)
+![](https://github.com/guilmira/soLong/blob/master/showCase/soLong.gif)
 
 ## About
 
