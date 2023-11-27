@@ -2,8 +2,7 @@
 This project is a small 2D game with minilibx. Textures, sprites and tiles included.
 
 
-![](https://github.com/GuilleMira/cub3d/blob/main/maps_and_media/gif/show_off.gif)
-
+![](https://github.com/guilmira/soLong/blob/master/showCase/show-off.gif)
 
 ## About
 
